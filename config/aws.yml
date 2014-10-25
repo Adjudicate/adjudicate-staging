@@ -1,0 +1,13 @@
+defaults: &defaults
+  access_key_id: <%=ENV["AWSAccessKeyId"]%>
+  secret_access_key: <%=ENV["AWSSecretKey"]%>
+development:
+  <<: *defaults
+  bucket: "adjudicate-test"
+test:
+  <<: *defaults
+  bucket: "adjudicate-test"
+production:
+  access_key_id: <%=ENV["AWSAccessKeyId"]%>
+  secret_access_key: <%=ENV["AWSSecretKey"]%>
+  bucket: "adjudicate"

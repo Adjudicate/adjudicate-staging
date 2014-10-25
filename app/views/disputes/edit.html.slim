@@ -2,6 +2,12 @@
   = file_field_tag :file, multiple: true
 .uploads_container
 
+script#template-upload type="text/x-tmpl" 
+  .upload id="upload_{%=o.unique_id%}" 
+    h5  %=o.name% 
+    .progress.progress-striped.active
+      .bar style=("width: 0%") 
+
 / = form_for @dispute, url: dispute_path do |f|
 /   = f.label :reason, 'Reason for Dispute'
 /   = f.text_area :reason
