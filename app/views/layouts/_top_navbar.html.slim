@@ -1,4 +1,27 @@
 nav.navbar.navbar-default role="navigation"
   .container-fluid
     .navbar-header
-      
+      .adjudicate-logo-container
+        = image_tag 'temp-logo.png', class: 'adjudicate-logo'
+    ul.nav.navbar-nav.navbar-right
+      li.dropdown
+        a.dropdown-toggle data-toggle="dropdown" href="#"
+          - if !current_user
+            | Get started
+          - else
+            | #{current_user.username}
+          span.caret
+        ul.dropdown-menu role="menu"
+          - if !current_user
+            li
+              = link_to "Sign up", new_user_registration_path
+            li
+              = link_to "Sign in", new_user_session_path
+            li.divider
+          - else
+            li
+              =
+          li
+            a href="#"  How it works
+          li
+            a href="#"  About us
