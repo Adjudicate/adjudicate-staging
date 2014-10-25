@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Adjudicate
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = include_gon
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    = render partial: 'layouts/top_navbar'
+    = render partial: 'layouts/flash_messages'
+    = yield

@@ -1,0 +1,7 @@
+#flashMessages
+    - if flash[:notice]
+      p
+        = notice
+    - if flash[:alert] || flash[:error]
+      p
+        = alert

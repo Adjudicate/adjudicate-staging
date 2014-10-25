@@ -1,0 +1,12 @@
+= s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+  = file_field_tag :file, multiple: true
+.uploads_container
+
+/ = form_for @dispute, url: dispute_path do |f|
+/   = f.label :reason, 'Reason for Dispute'
+/   = f.text_area :reason
+
+/   = f.label :violating_content, 'Content that violates dispute'
+/   = f.text_area :violating_content
+
+/   = f.submit 'Submit Dispute'
