@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
         request.path != "/users/password/edit" &&
         request.path != "/users/confirmation" &&
         request.path != "/users/sign_out" &&
+        request.path != "/" &&
         !request.xhr?) # don't store ajax calls
       session[:previous_url] = request.fullpath 
     end
