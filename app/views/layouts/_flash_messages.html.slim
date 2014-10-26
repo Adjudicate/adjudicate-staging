@@ -1,7 +1,14 @@
+/ #flashMessages
+/     - if flash[:notice]
+/       p
+/         = notice
+/     - if flash[:alert] || flash[:error]
+/       p
+/         = alert
 #flashMessages
-    - if flash[:notice]
-      p
-        = notice
-    - if flash[:alert] || flash[:error]
-      p
-        = alert
+  - if !flash.empty?
+    - flash.each do |type, message|
+      .alert.fade.in.no-bottom-margin class=(bootstrap_class_for(type))
+        = message
+        .button.close data-dismiss="alert"
+          |×

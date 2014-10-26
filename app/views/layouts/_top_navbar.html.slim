@@ -25,10 +25,10 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
                 = link_to "Sign up", new_user_registration_path
               li
                 = link_to "Sign in", new_user_session_path
-              li.divider
             - else
               li
-                =
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+            li.divider
             li
               a href="#"  How it works
             li
