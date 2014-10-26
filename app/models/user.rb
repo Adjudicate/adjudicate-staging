@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def create_default_username
-    username = "#{self.role}#{1000 + self.id}"
+    username = "User #{self.role}#{1000 + self.id}"
     self.update_column('username', username)
   end
 end
