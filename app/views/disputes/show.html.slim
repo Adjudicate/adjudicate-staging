@@ -1,1 +1,7 @@
-| Disputes show
+.disputes-container
+  | Dispute
+  - if @dispute.creator != current_user
+    = form_for :vote do |f|
+      = f.label :vote
+      = f.radio_button "takedown", "yes"
+      = f.radio_button "takedown", "no"

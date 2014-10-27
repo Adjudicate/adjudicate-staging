@@ -6,6 +6,7 @@ class DisputesController < ApplicationController
 
   def show
     @dispute = Dispute.find(params[:id])
+    @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
   end
 
   def edit
@@ -27,6 +28,7 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
+    @dispute.creator = current_user
 
     if @dispute.save
       redirect_to edit_dispute_path(@dispute)
