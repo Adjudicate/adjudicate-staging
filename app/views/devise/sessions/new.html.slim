@@ -1,26 +1,19 @@
 .content-container
   .home-background
   .home-content
-    .h2
-      | Sign in
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true
-      br
+    .sign-up-form
+      .sign-up-fields
+        h2.form-h2
+          | Sign in
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.email_field :email, placeholder: "Email", autofocus: true
 
-      = f.label :password
-      br
-      = f.password_field :password, autocomplete: "off"
-      br
+          = f.password_field :password, placeholder: "Password", autocomplete: "off"
 
-      - if devise_mapping.rememberable?
-        = f.check_box :remember_me
-        = f.label :remember_me
-        br
+          - if devise_mapping.rememberable?
+            = f.check_box :remember_me, class: 'signup-checkbox'
+            = f.label :remember_me
 
 
-      = f.submit "Sign in"
-
-
-= render "devise/shared/links"
+          = f.submit "Sign in", class: "btn btn-primary"
+      = link_to "or sign up", new_registration_path(resource_name), class: "toggle-entry"
