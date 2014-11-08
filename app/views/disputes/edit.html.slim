@@ -1,18 +1,27 @@
-= s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
-  = file_field_tag :file, multiple: true
-#uploads_container
+.disputes-container
+  .dispute-main-header
+    .h3
+      | Add details to Dispute 
+      = @dispute.id
+    .h4
+      = @dispute.url
+  .dispute-edit-form
+    .upload-documents-container
+      | Upload documents to support your dispute
+      = s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+        = file_field_tag :file, multiple: true
+      #uploads_container
 
-script#template-upload type="text/x-tmpl" 
-  .upload id="upload_{%=o.unique_id%}" 
-    h5  %=o.name% 
-    .progress.progress-striped.active
-      .bar style=("width: 0%") 
+    script#template-upload type="text/x-tmpl" 
+      .upload id="upload_{%=o.unique_id%}" 
+        h5  %=o.name% 
+        .progress.progress-striped.active
+          .bar style=("width: 0%") 
+    .edit-dispute-fields
+      = form_for @dispute, url: dispute_path do |f|
+        = f.text_area :reason, placeholder: "Reason for dispute", class: "edit-dispute-text"
 
-= form_for @dispute, url: dispute_path do |f|
-  = f.label :reason, 'Reason for Dispute'
-  = f.text_area :reason
+        = f.text_area :violating_content, placeholder: "Describe the violating content", class: "edit-dispute-text"
 
-  = f.label :violating_content, 'Content that violates dispute'
-  = f.text_area :violating_content
-
-  = f.submit 'Submit Dispute'
+        .edit-dispute-btn
+          = f.submit 'Submit Dispute', class: "btn btn-primary"
