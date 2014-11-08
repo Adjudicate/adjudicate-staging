@@ -1,6 +1,6 @@
 = s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
   = file_field_tag :file, multiple: true
-.uploads_container
+#uploads_container
 
 script#template-upload type="text/x-tmpl" 
   .upload id="upload_{%=o.unique_id%}" 
@@ -8,11 +8,11 @@ script#template-upload type="text/x-tmpl"
     .progress.progress-striped.active
       .bar style=("width: 0%") 
 
-/ = form_for @dispute, url: dispute_path do |f|
-/   = f.label :reason, 'Reason for Dispute'
-/   = f.text_area :reason
+= form_for @dispute, url: dispute_path do |f|
+  = f.label :reason, 'Reason for Dispute'
+  = f.text_area :reason
 
-/   = f.label :violating_content, 'Content that violates dispute'
-/   = f.text_area :violating_content
+  = f.label :violating_content, 'Content that violates dispute'
+  = f.text_area :violating_content
 
-/   = f.submit 'Submit Dispute'
+  = f.submit 'Submit Dispute'
