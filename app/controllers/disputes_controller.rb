@@ -2,6 +2,8 @@ class DisputesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @disputes = Dispute.all
+    @disputes.includes(:survey)
   end
 
   def show

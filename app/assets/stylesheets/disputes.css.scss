@@ -3,11 +3,19 @@
   width: 80%;
   margin: 0 auto;
 }
-.dispute-edit-form{
-
+.new-dispute-form{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+.new-dispute-form input {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
 }
 .dispute-main-header{
   text-align: center;
+  color: #6f6f6f;
 }
 .upload-documents-container{
   width: 300px;
@@ -29,4 +37,19 @@
 .edit-dispute-btn{
   margin: 0 auto;
   width: 120px;
+}
+.edit-dispute-fields textarea{
+  resize: none;
+}
+.dispute-list{
+  width: 80%;
+  margin: 0 auto;
+}
+.dispute-list-item{
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 10px;
+  text-align: center;
 }

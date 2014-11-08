@@ -1,2 +1,16 @@
 .disputes-container
-  | Disputes Index
+  .dispute-main-header
+    h3 Current Disputes
+  .dispute-list
+    - @disputes.each do |dispute|
+      .dispute-list-item
+        .row
+          .col-sm-4.dli-left
+            .row
+              .col-sm-4
+                = dispute.id
+              .col-sm-8
+                = dispute.url
+          .col-sm-8.dli-right
+            = dispute.survey.deadline
+

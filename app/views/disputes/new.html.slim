@@ -1,5 +1,7 @@
-= form_for @dispute, url: disputes_path do |f|
-  = f.label :url
-  = f.text_field :url
+.disputes-container
+  .new-dispute-form
+    = form_for @dispute, url: disputes_path do |f|
+      h4 Create New Dispute
+      = f.text_field :url, placeholder: "Url in dispute"
 
-  = f.submit 'New Dispute'
+      = f.submit 'Create Dispute', class: "btn btn-primary"
