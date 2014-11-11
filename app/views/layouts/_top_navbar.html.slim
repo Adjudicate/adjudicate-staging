@@ -36,6 +36,8 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
                 a href="#"  About us
             - else
               li
+                = link_to "Create a dispute", new_dispute_path
+              li
                 = link_to "My account", user_path(current_user)
               li.divider
               li
