@@ -31,9 +31,9 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
                 = link_to "Sign in", new_user_session_path
               li.divider
               li
-                a href="#"  How it works
+                = link_to "How it works", how_it_works_path
               li
-                a href="#"  About us
+                = link_to "About us", about_path
             - else
               li
                 = link_to "Create a dispute", new_dispute_path
