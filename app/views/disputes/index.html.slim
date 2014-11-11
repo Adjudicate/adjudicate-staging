@@ -7,16 +7,30 @@
         .row
           .col-sm-4.dli-left
             .row
-              .col-sm-4
+              .col-sm-2
                 = dispute.id
-              .col-sm-8
+              .col-sm-10
                 = dispute.url
           .col-sm-8.dli-right
+            | Survey Deadline: 
             = dispute.survey.deadline
         .row
-          .col-sm-12
-            | Files
-          - dispute.dispute_documents.each_with_index do |dd, index|
-            = link_to "#{index + 1}", dd.direct_upload_url, target: "_blank"
-            - unless dispute.dispute_documents.size == index + 1 
-              | , 
+          .col-sm-6
+            | Files: 
+            - if dispute.dispute_documents.empty?
+              | No files uploaded
+            - else
+              - dispute.dispute_documents.each_with_index do |dd, index|
+                = link_to "#{index + 1}", dd.direct_upload_url, target: "_blank"
+                - unless dispute.dispute_documents.size == index + 1 
+                  | , 
+          .col-sm-6
+            = link_to "Vote", dispute_path(dispute.id)
+          /   = form_for Vote.new, url: votes_dispute_survey_path(dispute_id: dispute.id) do |f|
+          /     | Vote:  
+          /     | Yes
+          /     = f.radio_button "takedown", true
+          /     | No
+          /     = f.radio_button "takedown", false
+
+          /     = f.submit "vote", class: 'btn btn-primary'

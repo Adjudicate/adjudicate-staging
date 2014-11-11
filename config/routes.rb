@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
   resources :disputes do 
     resources :dispute_documents, only: [:index, :create, :show], as: 'documents'
+    resource :survey, only: [:show] do
+      post 'votes' => 'votes#create'
+    end
   end
 end

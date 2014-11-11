@@ -33,7 +33,7 @@ class DisputesController < ApplicationController
     @dispute.creator = current_user
 
     if @dispute.save
-      redirect_to edit_dispute_path(@dispute)
+      # redirect_to edit_dispute_path(@dispute)
     else
       # TODO: better redirect
       redirect_to new_dispute_path
