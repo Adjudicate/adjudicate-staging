@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :dispute_documents, only: [:index, :create, :show], as: 'documents'
     resource :survey, only: [:show] do
       post 'votes' => 'votes#create'
+      patch 'votes' => 'votes#edit'
     end
   end
 end

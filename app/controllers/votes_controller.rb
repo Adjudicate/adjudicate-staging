@@ -11,6 +11,16 @@ class VotesController < ApplicationController
     end
   end
 
+  def edit
+    dispute = Dispute.find(params[:dispute_id])
+    @vote = Vote.where(user_id: current_user.id, survey_id: dispute.survey.id).first
+    if @vote.update_attributes(vote_params)
+      redirect_to disputes_path
+    else
+
+    end
+  end
+
   private
     def vote_params
       params.require(:vote).permit(:takedown)
