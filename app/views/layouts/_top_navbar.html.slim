@@ -36,6 +36,8 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
                 = link_to "About us", about_path
             - else
               li
+                = link_to "Current disputes", disputes_path
+              li
                 = link_to "Create a dispute", new_dispute_path
               li
                 = link_to "My account", user_path(current_user)
