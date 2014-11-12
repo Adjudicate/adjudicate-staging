@@ -13,4 +13,24 @@ class Survey < ActiveRecord::Base
   def user_voted?(user)
     user_vote(user) ? true : false
   end
+
+  def ended?
+    self.deadline.past?
+  end
+
+  def yes_votes
+    Vote.where(survey_id: self.id, takedown: true)
+  end
+
+  def no_votes
+    Vote.where(survey_id: self.id, takedown: false)
+  end
+
+  def yes_vote_count
+    yes_votes.count
+  end
+
+  def no_vote_count
+    no_votes.count
+  end
 end

@@ -8,4 +8,5 @@ class Dispute < ActiveRecord::Base
   def attach_survey
     self.survey = Survey.attach_default(self.id)
   end
+
 end

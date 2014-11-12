@@ -1,6 +1,6 @@
 .disputes-container
   | Dispute
-  - if @dispute.creator != current_user
+  - if @dispute.creator != current_user && !@dispute.survey.ended?
     = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
       | Vote:  
       | Yes
@@ -9,3 +9,9 @@
       = f.radio_button "takedown", false
 
       = f.submit "vote", class: 'btn btn-primary'
+  - else
+    | Results
+    | yes: 
+    = @dispute.survey.yes_vote_count
+    | no:
+    = @dispute.survey.no_vote_count
