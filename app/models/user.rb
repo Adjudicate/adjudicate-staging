@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  POINTS = {
+    vote_created: 5
+  }
+
   def to_param
     username
   end
@@ -19,5 +23,9 @@ class User < ActiveRecord::Base
   def create_default_username
     username = "user_#{self.role}#{1000 + self.id}"
     self.update_column('username', username)
+  end
+
+  def add_points(key)
+    self.increment!(:points, POINTS[key])
   end
 end
