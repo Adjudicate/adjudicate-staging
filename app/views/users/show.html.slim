@@ -1,4 +1,16 @@
-= @user.username
-= link_to 'Edit your profile', edit_user_path(@user)
-- if @user.admin?
-  = Admin!
+.disputes-container
+  h4.main-title 
+    | Your Profile
+  .row
+    .col-sm-8.col-sm-offset-2
+      div
+        | Username: 
+        = @user.username
+      div
+        | Points: 
+        = @user.points
+      div
+        = link_to 'Edit your profile', edit_user_path(@user)
+      div
+        - if @user.admin?
+          = Admin!
