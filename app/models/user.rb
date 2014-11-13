@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  after_create :create_default_username
+  after_create :after_create_methods
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -20,12 +20,19 @@ class User < ActiveRecord::Base
     self.role == 'admin'
   end
 
-  def create_default_username
-    username = "user_#{self.role}#{1000 + self.id}"
-    self.update_column('username', username)
-  end
-
   def add_points(key)
     self.increment!(:points, POINTS[key])
   end
+
+  private
+
+    def after_create_methods
+      create_default_username
+      AdminMailer.delay.new_user_signup(self)
+    end
+
+    def create_default_username
+      username = "user_#{self.role}#{1000 + self.id}"
+      self.update_column('username', username)
+    end
 end

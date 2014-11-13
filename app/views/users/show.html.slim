@@ -13,4 +13,8 @@
         = link_to 'Edit your profile', edit_user_path(@user)
       div
         - if @user.admin?
-          = Admin!
+          | Invite Arbitrators
+          = form_tag "#{@user.id}/invite_arbitrator" 
+            = label_tag 'email'
+            = text_field_tag 'email', nil, placeholder: 'Enter email(s) - comma separated'
+            = submit_tag 'Invite'

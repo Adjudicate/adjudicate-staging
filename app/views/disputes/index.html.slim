@@ -26,11 +26,3 @@
                   | , 
           .col-sm-6
             = link_to "Vote", dispute_path(dispute.id)
-          /   = form_for Vote.new, url: votes_dispute_survey_path(dispute_id: dispute.id) do |f|
-          /     | Vote:  
-          /     | Yes
-          /     = f.radio_button "takedown", true
-          /     | No
-          /     = f.radio_button "takedown", false
-
-          /     = f.submit "vote", class: 'btn btn-primary'

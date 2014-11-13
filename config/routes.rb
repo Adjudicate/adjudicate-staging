@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get '/how-it-works' => 'static#how_it_works'
   get '/about' => 'static#about'
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do 
+    post 'invite_arbitrator' => 'users#invite_arbitrator'
+  end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
   resources :disputes do 

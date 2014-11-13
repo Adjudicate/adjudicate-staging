@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite_arbitrator
+    if current_user.admin?
+      params[:email].split(',').each do |email|
+        AdminMailer.delay.invite_arbitrator(email)
+      end
+      redirect_to user_path(current_user)
+    end
+  end
+
 
 
   private
