@@ -25,4 +25,7 @@
                 - unless dispute.dispute_documents.size == index + 1 
                   | , 
           .col-sm-6
-            = link_to "Vote", dispute_path(dispute.id)
+            - if dispute.survey.ended? || dispute.creator == current_user
+              | Survey vote count: #{dispute.survey.yes_vote_count} yes, #{dispute.survey.no_vote_count} no
+            - else
+              = link_to "Vote", dispute_path(dispute.id)
