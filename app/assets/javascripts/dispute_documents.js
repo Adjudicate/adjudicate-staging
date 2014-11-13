@@ -6,7 +6,7 @@ $(function() {
     }
   );
   $('#s3_uploader').bind('s3_upload_failed', function(e, content) {
-    return alert(content.filename + ' failed to upload');
+    return alert(content.filename + ' failed to upload: ' + content.error_thrown);
   });
   $('#s3_uploader').bind('s3_upload_complete', function(e, content) {
     html = '<div class="completed-uploads">' +
