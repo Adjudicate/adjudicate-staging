@@ -21,7 +21,7 @@
               | No files uploaded
             - else
               - dispute.dispute_documents.each_with_index do |dd, index|
-                = link_to "#{index + 1}", dd.direct_upload_url, target: "_blank"
+                = link_to "#{index + 1}", dd.url, target: "_blank"
                 - unless dispute.dispute_documents.size == index + 1 
                   | , 
           .col-sm-6

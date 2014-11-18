@@ -10,7 +10,7 @@ class AdminMailer < ActionMailer::Base
 
   def dispute_submitted(dispute)
     email = 'peter@adjudicateonline.com'
-    @user = dispute.user
+    @user = dispute.creator
 
     mail(to: email, subject: "A dispute was created")
   end

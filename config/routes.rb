@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do 
     post 'invite_arbitrator' => 'users#invite_arbitrator'
+    resources :billing, only: [:show]
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'

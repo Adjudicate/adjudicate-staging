@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113031320) do
+ActiveRecord::Schema.define(version: 20141118023732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141113031320) do
     t.boolean  "processed",           default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "s3_url"
   end
 
   add_index "dispute_documents", ["dispute_id"], name: "index_dispute_documents_on_dispute_id", using: :btree

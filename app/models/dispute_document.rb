@@ -11,6 +11,10 @@ class DisputeDocument < ActiveRecord::Base
   before_create :set_upload_attributes
   after_create :queue_processing
   
+  def url
+    self.s3_url || self.direct_upload_url
+  end
+
   # Store an unescaped version of the escaped URL that Amazon returns from direct upload.
   def direct_upload_url=(escaped_url)
     write_attribute(:direct_upload_url, (CGI.unescape(escaped_url) rescue nil))
@@ -32,6 +36,8 @@ class DisputeDocument < ActiveRecord::Base
     else
       paperclip_file_path = "documents/uploads/#{id}/original/#{direct_upload_url_data[:filename]}"
       s3.buckets[Rails.configuration.aws[:bucket]].objects[paperclip_file_path].copy_from(direct_upload_url_data[:path])
+      self.update_column('s3_url', "https://s3-us-west-2.amazonaws.com/adjudicate#{!Rails.env.production? ? "-test" : ''}/#{paperclip_file_path}")
+
     end
  
     document.processed = true
