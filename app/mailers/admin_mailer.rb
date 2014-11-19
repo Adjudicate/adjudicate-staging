@@ -21,4 +21,10 @@ class AdminMailer < ActionMailer::Base
 
     mail(to: email, subject: 'A new user was created')
   end
+
+  def send_confirmation_email(dispute)
+    @dispute = dispute
+    
+    mail(to: @dispute.creator_email, subject: "Your dispute was created")
+  end
 end

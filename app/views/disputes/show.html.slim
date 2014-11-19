@@ -17,10 +17,16 @@
   - if !@dispute.survey.ended?
     = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
       | Vote:  
-      | Yes
-      = f.radio_button "takedown", true
-      | No
-      = f.radio_button "takedown", false
+      | 1 (Strongly adivse Takedown)
+      = f.radio_button "takedown", 1
+      | 2
+      = f.radio_button "takedown", 2
+      | 3
+      = f.radio_button "takedown", 3
+      | 4
+      = f.radio_button "takedown", 4
+      | 5 (Strongly advise No Takedown)
+      = f.radio_button "takedown", 5
 
       = f.submit "vote", class: 'btn btn-primary'
   - else
@@ -29,7 +35,5 @@
         .results-header
           | Results
         .results-content
-          | yes: 
-          = @dispute.survey.yes_vote_count
-          |  no: 
-          = @dispute.survey.no_vote_count
+          | Average vote:  
+          = @dispute.survey.vote_average

@@ -3,5 +3,6 @@
     = form_for @dispute, url: disputes_path do |f|
       h4 Create New Dispute
       = f.text_field :url, placeholder: "Url in dispute"
+      = f.email_field :creator_email, placeholder: 'Your email'
 
       = f.submit 'Create Dispute', class: "btn btn-primary"

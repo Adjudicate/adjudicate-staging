@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :dispute_users
+  has_many :disputes, through: :dispute_users
+
   after_create :after_create_methods
 
   validates_presence_of :email

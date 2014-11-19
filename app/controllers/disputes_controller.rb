@@ -1,8 +1,8 @@
 class DisputesController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :edit]
+  before_action :authenticate_user!, only: [:index, :show, :invite_users]
 
   def index
-    @disputes = Dispute.all
+    @disputes = Dispute.joins(:dispute_users).where(dispute_users: { user_id: current_user.id})
     @disputes.includes(:survey)
   end
 
@@ -13,6 +13,9 @@ class DisputesController < ApplicationController
 
   def edit
     @dispute = Dispute.find(params[:id])
+    if params[:uid] != @dispute.uid
+      redirect_to root_path
+    end
   end
 
   def update
@@ -30,9 +33,11 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
+    uid = SecureRandom.hex(10)
+    @dispute.uid = uid
 
     if @dispute.save
-      redirect_to edit_dispute_path(@dispute)
+      redirect_to edit_dispute_path(@dispute), uid: uid
     else
       # TODO: better redirect
       redirect_to new_dispute_path
@@ -40,6 +45,21 @@ class DisputesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def invite_users
+    @dispute = Dispute.find(params[:id])
+    emails = params[:email].split(',').each do |email|
+      @user = User.find_or_initialize_by(email: email)
+      @temp_pw = nil
+      if !@user.persisted?
+        @temp_pw = SecureRandom.hex(5)
+        @user.password = @temp_pw
+        @user.save
+      end
+      AdminMailer.delay.invite_arbitrator(@user, @temp_pw)
+      DisputeUser.create(user: @user, dispute: @dispute)
+    end
   end
 
   private

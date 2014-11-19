@@ -1,6 +1,6 @@
 class Survey < ActiveRecord::Base
   belongs_to :dispute
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   def self.attach_default(dispute_id)
     Survey.create(dispute_id: dispute_id, deadline: 1.month.from_now)
@@ -18,19 +18,12 @@ class Survey < ActiveRecord::Base
     self.deadline.past?
   end
 
-  def yes_votes
-    Vote.where(survey_id: self.id, takedown: true)
+  def vote_average
+    votes = Vote.where(survey_id: self.id)
+    votes.sum('takedown') / votes.count.to_f
   end
 
-  def no_votes
-    Vote.where(survey_id: self.id, takedown: false)
-  end
-
-  def yes_vote_count
-    yes_votes.count
-  end
-
-  def no_vote_count
-    no_votes.count
+  def takedown_result
+    self.vote_average >= 3 ? false : true
   end
 end

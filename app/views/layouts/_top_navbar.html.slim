@@ -19,17 +19,12 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#"
             - if !current_user
-              | Get started
+              | About Us
             - else
               | #{current_user.username}
             span.caret
           ul.dropdown-menu role="menu"
             - if !current_user
-              li
-                = link_to "Sign up", new_user_registration_path
-              li
-                = link_to "Sign in", new_user_session_path
-              li.divider
               li
                 = link_to "How it works", how_it_works_path
               li
