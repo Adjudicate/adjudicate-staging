@@ -14,7 +14,7 @@
       .row
         .col-sm-8.col-sm-offset-2
           = @dispute.violating_content
-  - if @dispute.creator != current_user && !@dispute.survey.ended?
+  - if !@dispute.survey.ended?
     = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
       | Vote:  
       | Yes

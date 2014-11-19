@@ -1,5 +1,5 @@
 class DisputesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :edit]
 
   def index
     @disputes = Dispute.all
@@ -30,7 +30,6 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
-    @dispute.creator = current_user
 
     if @dispute.save
       redirect_to edit_dispute_path(@dispute)
@@ -46,7 +45,7 @@ class DisputesController < ApplicationController
   private
 
     def dispute_params
-      params.require(:dispute).permit(:url, :violating_content, :reason)
+      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email)
     end
 
 end
