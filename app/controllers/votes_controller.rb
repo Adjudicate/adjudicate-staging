@@ -5,7 +5,8 @@ class VotesController < ApplicationController
     @vote.user = current_user
     @vote.survey = dispute.survey
     if @vote.save
-      redirect_to disputes_path
+      flash[:notice] = 'Thank you for voting'
+      redirect_to dispute_vote_path(dispute, uid: dispute.uid)
     else
 
     end
@@ -15,7 +16,8 @@ class VotesController < ApplicationController
     dispute = Dispute.find(params[:dispute_id])
     @vote = Vote.where(user_id: current_user.id, survey_id: dispute.survey.id).first
     if @vote.update_attributes(vote_params)
-      redirect_to disputes_path
+      flash[:notice] = 'Thank you for voting'
+      redirect_to dispute_vote_path(dispute, uid: dispute.uid)
     else
 
     end
