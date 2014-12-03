@@ -1,0 +1,39 @@
+.disputes-container
+  h4.main-title Dispute
+  .row
+    .col-sm-8.col-sm-offset-2
+      .row
+        .col-sm-4.col-sm-offset-4
+          h5 Dispute Reason
+      .row
+        .col-sm-8.col-sm-offset-2
+          = @dispute.reason
+      .row
+        .col-sm-4.col-sm-offset-4
+          h5 Violating Content
+      .row
+        .col-sm-8.col-sm-offset-2
+          = @dispute.violating_content
+  - if !@dispute.survey.ended?
+    = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
+      | Vote:  
+      | 1 (Strongly adivse Takedown)
+      = f.radio_button "takedown", 1
+      | 2
+      = f.radio_button "takedown", 2
+      | 3
+      = f.radio_button "takedown", 3
+      | 4
+      = f.radio_button "takedown", 4
+      | 5 (Strongly advise No Takedown)
+      = f.radio_button "takedown", 5
+
+      = f.submit "vote", class: 'btn btn-primary'
+  - else
+    .row
+      .col-sm-8.col-sm-offset-2
+        .results-header
+          | Results
+        .results-content
+          | Average vote:  
+          = @dispute.survey.vote_average

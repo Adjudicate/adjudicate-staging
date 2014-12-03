@@ -28,4 +28,4 @@
             - if dispute.survey.ended?
               | Survey vote count: #{dispute.survey.yes_vote_count} yes, #{dispute.survey.no_vote_count} no
             - else
-              = link_to "Vote", dispute_path(dispute.id)
+              = link_to "Vote", dispute_vote_path(dispute.id)

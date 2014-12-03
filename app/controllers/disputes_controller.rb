@@ -1,5 +1,5 @@
 class DisputesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :invite_users]
+  before_action :authenticate_user!, only: [:index, :invite_users, :vote_show]
 
   def index
     @disputes = Dispute.joins(:dispute_users).where(dispute_users: { user_id: current_user.id})
@@ -8,9 +8,12 @@ class DisputesController < ApplicationController
 
   def show
     @dispute = Dispute.find(params[:id])
-    if current_user
-      @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
-    end
+    redirect_to root_path if params[:uid] != @dispute.uid
+  end
+
+  def vote_show
+    @dispute = Dispute.find(params[:dispute_id])
+    @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
     redirect_to root_path if params[:uid] != @dispute.uid
   end
 
