@@ -70,7 +70,7 @@ class DisputesController < ApplicationController
   private
 
     def dispute_params
-      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email)
+      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email, :violator_contact)
     end
 
 end
