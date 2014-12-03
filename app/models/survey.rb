@@ -15,15 +15,18 @@ class Survey < ActiveRecord::Base
   end
 
   def ended?
-    self.deadline.past?
+    deadline.past?
+  end
+
+  def num_votes
+    votes.count
   end
 
   def vote_average
-    votes = Vote.where(survey_id: self.id)
-    votes.sum('takedown') / votes.count.to_f
+    votes.empty? ? 0 : votes.sum('takedown') / votes.count.to_f
   end
 
   def takedown_result
-    self.vote_average >= 3 ? false : true
+    vote_average >= 3 ? false : true
   end
 end

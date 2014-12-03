@@ -1,5 +1,5 @@
 class DisputesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :invite_users]
+  before_action :authenticate_user!, only: [:index, :invite_users]
 
   def index
     @disputes = Dispute.joins(:dispute_users).where(dispute_users: { user_id: current_user.id})
@@ -8,20 +8,21 @@ class DisputesController < ApplicationController
 
   def show
     @dispute = Dispute.find(params[:id])
-    @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
+    if current_user
+      @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
+    end
+    redirect_to root_path if params[:uid] != @dispute.uid
   end
 
   def edit
     @dispute = Dispute.find(params[:id])
-    if params[:uid] != @dispute.uid
-      redirect_to root_path
-    end
+    redirect_to root_path if params[:uid] != @dispute.uid
   end
 
   def update
     @dispute = Dispute.find(params[:id])
     if @dispute.update_attributes(dispute_params)
-      redirect_to dispute_path(@dispute)
+      redirect_to dispute_path(@dispute, uid: @dispute.uid)
     else
       redirect_to edit_dispute_path(@dispute)
     end
@@ -37,7 +38,8 @@ class DisputesController < ApplicationController
     @dispute.uid = uid
 
     if @dispute.save
-      redirect_to edit_dispute_path(@dispute), uid: uid
+      p uid
+      redirect_to edit_dispute_path(@dispute, uid: uid)
     else
       # TODO: better redirect
       redirect_to new_dispute_path

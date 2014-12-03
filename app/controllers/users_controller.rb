@@ -20,9 +20,10 @@ class UsersController < ApplicationController
   end
 
   def invite_arbitrator
-    if current_user.admin?
+    dispute = Dispute.find_by_uid(params[:uid])
+    if current_user.admin? && dispute
       params[:email].split(',').each do |email|
-        AdminMailer.delay.invite_arbitrator(email)
+        AdminMailer.delay.invite_arbitrator(email, dispute)
       end
       redirect_to user_path(current_user)
     end
