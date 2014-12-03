@@ -12,8 +12,12 @@ class DisputesController < ApplicationController
   end
 
   def vote_show
-    @dispute = Dispute.find(params[:dispute_id])
-    @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
+    @dispute = Dispute.joins(:dispute_users).where(disputes: {id: params[:dispute_id] }, dispute_users: { user_id: current_user.id}).first
+    if @dispute
+      @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
+    else
+      redirect_to root_path
+    end
   end
 
   def edit

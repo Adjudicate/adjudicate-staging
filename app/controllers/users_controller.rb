@@ -23,7 +23,15 @@ class UsersController < ApplicationController
     dispute = Dispute.find_by_uid(params[:uid])
     if current_user.admin? && dispute
       params[:email].split(',').each do |email|
-        AdminMailer.delay.invite_arbitrator(email, dispute)
+        user = User.find_or_initialize_by(email: email)
+        temp_pw = nil
+        if !user.persisted?
+          temp_pw = SecureRandom.hex(5)
+          user.password = temp_pw
+          user.save
+        end
+        AdminMailer.delay.invite_arbitrator(user, dispute, temp_pw)
+        DisputeUser.create(user: user, dispute: dispute)
       end
       redirect_to user_path(current_user)
     end

@@ -2,9 +2,10 @@ class AdminMailer < ActionMailer::Base
   #TODO: change to an admin email address
   default from: 'peter@adjudicateonline.com'
 
-  def invite_arbitrator(email, dispute)
-    email = email
+  def invite_arbitrator(user, dispute, temp_pw)
+    email = user.email
     @dispute = dispute
+    @temp_pw = temp_pw
 
     mail(to: email, subject: "You're invited to participate in Adjudicate Online")
   end

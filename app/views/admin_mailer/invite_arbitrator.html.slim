@@ -1,3 +1,8 @@
 | You are invited to participate in a dispute on Adjudicate Online.  To vote go to 
 = link_to dispute_url(@dispute), dispute_vote_url(@dispute)
-| .  If you haven't signed up yet, please do so at <a href="http://www.adjudicateonline.com/users/sign_up">www.adjudicateonline.com/users/sign_up</a> or you won't be able to vote.
+| .
+
+- if @temp_pw
+  |  An account was created for you.  Please sign in at <a href="http://www.adjudicateonline.com/users/sign_in">www.adjudicateonline.com/users/sign_in</a> using the temporary password: 
+  = @temp_pw
+  | .
