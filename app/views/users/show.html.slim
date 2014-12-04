@@ -14,8 +14,11 @@
       div
         - if @user.admin?
           | Invite Arbitrators
-          = form_tag "#{@user.id}/invite_arbitrator" 
-            = label_tag 'email'
-            = text_field_tag 'email', nil, placeholder: 'Enter email(s) - comma separated'
+          /user_invite_arbitrator
+          = form_tag "#{@user.id}/invite_arbitrator", multipart: true
+            / = label_tag 'emails'
+            / = text_field_tag 'emails', nil, placeholder: 'Enter email(s) - comma separated'
+            = label_tag 'upload emails as csv'
+            = file_field_tag 'file'
             = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID'
             = submit_tag 'Invite'

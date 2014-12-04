@@ -16,6 +16,21 @@ class User < ActiveRecord::Base
     vote_created: 5
   }
 
+  def self.invite_from_spreadsheet(file, dispute)
+    p file.path
+    CSV.foreach(file.path, headers: true) do |row|
+      user = User.find_or_initialize_by(email: row["email"])
+      temp_pw = nil
+      if !user.persisted?
+        temp_pw = SecureRandom.hex(5)
+        user.password = temp_pw
+        user.save
+      end
+      AdminMailer.delay.invite_arbitrator(user, dispute, temp_pw)
+      DisputeUser.create(user: user, dispute: dispute)
+    end
+  end
+
   def to_param
     username
   end

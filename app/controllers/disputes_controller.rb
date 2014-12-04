@@ -2,7 +2,11 @@ class DisputesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :invite_users, :vote_show]
 
   def index
-    @disputes = Dispute.joins(:dispute_users).where(dispute_users: { user_id: current_user.id})
+    if current_user.admin?
+      @disputes = Dispute.all
+    else
+      @disputes = Dispute.joins(:dispute_users).where(dispute_users: { user_id: current_user.id})
+    end
     @disputes.includes(:survey)
   end
 
