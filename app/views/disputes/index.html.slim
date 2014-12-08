@@ -25,10 +25,10 @@
                 - unless dispute.dispute_documents.size == index + 1 
                   | , 
           .col-sm-6
-            - if dispute.survey.ended?
+            - if dispute.survey.ended? || current_user.admin?
               | Average vote:  
               = dispute.survey.vote_average
-              | Standard Deviation: 
+              |  Standard Deviation: 
               = dispute.survey.standard_deviation
             - else
               = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid)

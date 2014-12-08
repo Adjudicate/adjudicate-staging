@@ -22,7 +22,7 @@
       - if @dispute.survey.ended?
         | Average vote:  
         = dispute.survey.vote_average
-        | Standard Deviation: 
+        |  Standard Deviation: 
         = dispute.survey.standard_deviation
       - else 
         | Dispute is being voted on.  Results will be available after 
