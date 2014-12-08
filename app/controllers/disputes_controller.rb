@@ -16,7 +16,7 @@ class DisputesController < ApplicationController
   end
 
   def vote_show
-    @dispute = Dispute.joins(:dispute_users).where(disputes: {id: params[:dispute_id] }, dispute_users: { user_id: current_user.id}).first
+    @dispute = current_user.admin? ? Dispute.find(params[:dispute_id]) : Dispute.joins(:dispute_users).where(disputes: {id: params[:dispute_id] }, dispute_users: { user_id: current_user.id}).first
     if @dispute
       @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
     else

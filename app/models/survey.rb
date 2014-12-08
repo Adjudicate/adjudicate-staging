@@ -26,6 +26,19 @@ class Survey < ActiveRecord::Base
     votes.empty? ? 0 : votes.sum('takedown') / votes.count.to_f
   end
 
+  def vote_values
+    votes.pluck('takedown')
+  end
+
+  def sample_variance
+    sum = [vote_values].inject(0){ |accum, i| accum + (i - vote_average) ** 2 }
+    sum / (vote_values.length - 1).to_f
+  end
+
+  def standard_deviation
+    votes.length > 1 ? Math.sqrt(sample_variance) : 'None available'
+  end
+
   def takedown_result
     vote_average >= 3 ? false : true
   end

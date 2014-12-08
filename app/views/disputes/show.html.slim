@@ -19,5 +19,11 @@
       .results-header
         | Results
       .results-content
+      - if @dispute.survey.ended?
         | Average vote:  
-        = @dispute.survey.vote_average
+        = dispute.survey.vote_average
+        | Standard Deviation: 
+        = dispute.survey.standard_deviation
+      - else 
+        | Dispute is being voted on.  Results will be available after 
+        = @dispute.survey.deadline.strftime('%D')
