@@ -5,17 +5,20 @@
     - @disputes.each do |dispute|
       .dispute-list-item
         .row
-          .col-sm-4.dli-left
+          .col-sm-4
             .row
-              .col-sm-2
+              .col-sm-12
+                | Dispute #
                 = dispute.id
-              .col-sm-10
+            .row
+              .col-sm-12
+                | website: 
                 = dispute.url
-          .col-sm-8.dli-right
-            | Survey Deadline: 
-            = dispute.survey.deadline
-        .row
-          .col-sm-6
+            .row
+              .col-sm-12.dli-right
+                | Survey Deadline: 
+                = dispute.survey.deadline.strftime('%b %e, %Y')
+          .col-sm-4
             | Files: 
             - if dispute.dispute_documents.empty?
               | No files uploaded
@@ -24,11 +27,15 @@
                 = link_to "#{index + 1}", dd.url, target: "_blank"
                 - unless dispute.dispute_documents.size == index + 1 
                   | , 
-          .col-sm-6
+          .col-sm-4
             - if dispute.survey.ended? || current_user.admin?
-              | Average vote:  
-              = dispute.survey.vote_average
-              |  Standard Deviation: 
-              = dispute.survey.standard_deviation
+              .row
+                .col-sm-12
+                  | Average vote:  
+                  = dispute.survey.vote_average
+              .row
+                .col-sm-12
+                  |  Standard Deviation: 
+                  = dispute.survey.standard_deviation
             - else
               = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid)
