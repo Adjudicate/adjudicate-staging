@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     return unless request.get? 
     if (request.path != "/users/sign_in" &&
         request.path != "/users/sign_up" &&
+        request.path != "/signin" &&
+        request.path != "/signup" &&
         request.path != "/users/password/new" &&
         request.path != "/users/password/edit" &&
         request.path != "/users/confirmation" &&

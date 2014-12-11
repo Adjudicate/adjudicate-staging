@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_scope :user do
+    get "/signin" => "devise/sessions#new"
+    get "/signup" => "devise/registrations#new"
+  end
+
   root 'static#home'
   get '/how-it-works' => 'static#how_it_works'
   get '/about' => 'static#about'

@@ -11,13 +11,13 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_uniqueness_of :email
+  validate :username_not_invalid
 
   POINTS = {
     vote_created: 5
   }
 
   def self.invite_from_spreadsheet(file, dispute)
-    p file.path
     CSV.foreach(file.path, headers: true) do |row|
       user = User.find_or_initialize_by(email: row["email"])
       temp_pw = nil
@@ -53,5 +53,9 @@ class User < ActiveRecord::Base
     def create_default_username
       username = "user_#{self.role}#{1000 + self.id}"
       self.update_column('username', username)
+    end
+
+    def username_not_invalid
+      errors.add(:username, "is an invalid username") if ['sign_in', 'sign_up'].include?(username)
     end
 end
