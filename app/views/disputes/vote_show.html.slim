@@ -14,6 +14,16 @@
       .row
         .col-sm-8.col-sm-offset-2
           = @dispute.violating_content
+      .row
+        .col-sm-12
+          | Files: 
+          - if @dispute.dispute_documents.empty?
+            | No files uploaded
+          - else
+            - @dispute.dispute_documents.each_with_index do |dd, index|
+              .row
+                .col-sm-12
+                  = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
   - if !@dispute.survey.ended?
     .row
       .col-sm-4.col-sm-offset-4
