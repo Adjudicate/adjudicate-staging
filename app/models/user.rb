@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
       if !user.persisted?
         temp_pw = SecureRandom.hex(5)
         user.password = temp_pw
+        user.role = 'arbitrator'
         user.save
       end
       AdminMailer.delay.invite_arbitrator(user, dispute, temp_pw)
