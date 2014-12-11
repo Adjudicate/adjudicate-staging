@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_uniqueness_of :email
-  validate :username_not_invalid
+  validate :username_not_invalid, :on => [ :update ]
 
   POINTS = {
     vote_created: 5
