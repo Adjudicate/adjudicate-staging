@@ -31,7 +31,7 @@ class Survey < ActiveRecord::Base
   end
 
   def sample_variance
-    sum = [vote_values].inject(0){ |accum, i| accum + (i - vote_average) ** 2 }
+    sum = vote_values.inject(0){ |accum, i| accum + (i - vote_average) ** 2 }
     sum / (vote_values.length - 1).to_f
   end
 
