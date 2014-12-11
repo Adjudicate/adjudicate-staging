@@ -42,5 +42,9 @@
                 .col-sm-12
                   |  Standard Deviation: 
                   = dispute.survey.standard_deviation
+              .row
+                .col-sm-12
+                  | Number of votes:
+                  = dispute.survey.votes.count
             - else
               = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid)
