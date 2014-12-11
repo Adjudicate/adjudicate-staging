@@ -8,8 +8,12 @@
           .col-sm-4
             .row
               .col-sm-12
-                | Dispute #
-                = dispute.id
+                - if current_user.admin?
+                  | Dispute #
+                  = link_to dispute.id, dispute_path(dispute, uid: dispute.uid)
+                - else
+                  | Dispute #
+                  = dispute.id
             .row
               .col-sm-12
                 | website: 
@@ -46,5 +50,8 @@
                 .col-sm-12
                   | Number of votes:
                   = dispute.survey.votes.count
-            - else
+              .row
+                .col-sm-12
+                  #d3-bar-chart
+            - if !dispute.survey.ended?
               = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid)

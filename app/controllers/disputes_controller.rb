@@ -12,6 +12,8 @@ class DisputesController < ApplicationController
 
   def show
     @dispute = Dispute.find(params[:id])
+    gon.votes = @dispute.survey.votes
+    p gon
     redirect_to root_path if params[:uid] != @dispute.uid
   end
 
