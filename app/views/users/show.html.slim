@@ -16,7 +16,8 @@
           .row
             .col-sm-12
               h3.main-title Admin Controls
-              | Invite Arbitrators
+              h5 style="text-align: center;"
+                | Invite Arbitrators
               /user_invite_arbitrator
           = form_tag "#{@user.id}/invite_arbitrator", multipart: true
           .row
