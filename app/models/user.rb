@@ -57,6 +57,6 @@ class User < ActiveRecord::Base
 
     def username_not_invalid
       # need better validation so that it's only alphanumeric numbers
-      errors.add(:username, "is an invalid username") if ['sign_in', 'sign_up'].include?(username) || username.include? '.' || username.include? '/'
+      errors.add(:username, "is an invalid username") if ['sign_in', 'sign_up'].include?(username) || username.include?('.') || username.include?('/')
     end
 end

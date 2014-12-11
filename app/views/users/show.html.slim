@@ -11,14 +11,21 @@
         = @user.points
       div
         = link_to 'Edit your profile', edit_user_path(@user)
-      div
         - if @user.admin?
-          | Invite Arbitrators
-          /user_invite_arbitrator
+        div.admin-controls
+          .row
+            .col-sm-12
+              h3.main-title Admin Controls
+              | Invite Arbitrators
+              /user_invite_arbitrator
           = form_tag "#{@user.id}/invite_arbitrator", multipart: true
-            / = label_tag 'emails'
-            / = text_field_tag 'emails', nil, placeholder: 'Enter email(s) - comma separated'
-            = label_tag 'upload emails as csv'
-            = file_field_tag 'file'
-            = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID'
-            = submit_tag 'Invite'
+          .row
+            .col-sm-4
+              = label_tag 'upload emails as csv'
+              = file_field_tag 'file'
+            .col-sm-8
+              = label_tag 'uid', 'UID', class: 'control-label'
+              = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID', class: 'form-control'
+          .row
+            .col-sm-12
+              = submit_tag 'Invite'
