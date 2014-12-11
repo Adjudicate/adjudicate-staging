@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def invite_arbitrator
     dispute = Dispute.find_by_uid(params[:uid])
-    if current_user.admin? && dispute && params[:file].content_type == 'text/csv'
+    if current_user.admin? && dispute
       User.invite_from_spreadsheet(params[:file], dispute)
       redirect_to user_path(current_user), :flash => { :notice => 'You have successfully invited arbitrators.'}
     else
