@@ -1,0 +1,5 @@
+| Your content on #{@dispute.url} is accussed of violating terms and conditions and is under takedown review.  You are free to defend yourself.  You can do so here: 
+= link_to edit_dispute_url(@dispute, uid: @dispute.defendant_uid), edit_dispute_url(@dispute, uid: @dispute.defendant_uid)
+|.  To view results once the takedown review process is complete you can visit this url
+= link_to dispute_url(@dispute, uid: @dispute.defendant_uid), dispute_url(@dispute, uid: @dispute.defendant_uid)
+|.

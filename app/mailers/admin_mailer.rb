@@ -29,4 +29,10 @@ class AdminMailer < ActionMailer::Base
     
     mail(to: @dispute.creator_email, subject: "Your dispute was created")
   end
+
+  def inform_defendant(email, dispute)
+    @dispute = dispute
+
+    mail(to: email, subject: "Your content online is accussed of violating terms")
+  end
 end

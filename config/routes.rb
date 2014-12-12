@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do 
     post 'invite_arbitrator' => 'users#invite_arbitrator'
+    post 'inform_defendant' => 'users#inform_defendant'
     resources :billing, only: [:show]
   end
   resources :admins, only: [:show]
