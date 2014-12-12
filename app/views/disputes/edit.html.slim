@@ -28,7 +28,7 @@
             = f.submit 'Update Dispute', class: "btn btn-primary"
     - else
       .upload-documents-container
-        | Upload documents to support your dispute
+        | Upload documents to support your rebuttal
         = s3_uploader_form callback_url: dispute_documents_url(@dispute.id, disputant: @disputant), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
           = file_field_tag :file, multiple: true
         #uploads_container

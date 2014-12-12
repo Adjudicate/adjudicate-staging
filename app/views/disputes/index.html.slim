@@ -9,8 +9,7 @@
             .row
               .col-sm-12
                 - if current_user.admin?
-                  | Dispute #
-                  = link_to dispute.id, dispute_path(dispute, uid: dispute.uid)
+                  = link_to "Dispute #{dispute.id}", dispute_path(dispute, uid: dispute.uid)
                 - else
                   | Dispute #
                   = dispute.id
