@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203203015) do
+ActiveRecord::Schema.define(version: 20141212045105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141203203015) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "s3_url"
+    t.boolean  "disputant",           default: true
   end
 
   add_index "dispute_documents", ["dispute_id"], name: "index_dispute_documents_on_dispute_id", using: :btree
@@ -63,6 +64,8 @@ ActiveRecord::Schema.define(version: 20141203203015) do
     t.string "creator_email"
     t.string "uid"
     t.string "violator_contact"
+    t.string "defendant_uid"
+    t.text   "rebuttal"
   end
 
   create_table "surveys", force: true do |t|

@@ -6,22 +6,41 @@
     .h4
       = @dispute.url
   .dispute-edit-form
-    .upload-documents-container
-      | Upload documents to support your dispute
-      = s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
-        = file_field_tag :file, multiple: true
-      #uploads_container
+    - if @disputant
+      .upload-documents-container
+        | Upload documents to support your dispute
+        = s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+          = file_field_tag :file, multiple: true
+        #uploads_container
 
-    script#template-upload type="text/x-tmpl" 
-      .upload id="upload_{%=o.unique_id%}" 
-        h5  %=o.name% 
-        .progress.progress-striped.active
-          .bar style=("width: 0%") 
-    .edit-dispute-fields
-      = form_for @dispute, url: dispute_path do |f|
-        = f.text_area :reason, placeholder: "Reason for dispute", class: "edit-dispute-text"
+      script#template-upload type="text/x-tmpl" 
+        .upload id="upload_{%=o.unique_id%}" 
+          h5  %=o.name% 
+          .progress.progress-striped.active
+            .bar style=("width: 0%") 
+      .edit-dispute-fields
+        = form_for @dispute, url: dispute_path do |f|
+          = f.text_area :reason, placeholder: "Reason for dispute", class: "edit-dispute-text"
 
-        = f.text_area :violating_content, placeholder: "Describe the violating content", class: "edit-dispute-text"
+          = f.text_area :violating_content, placeholder: "Describe the violating content", class: "edit-dispute-text"
 
-        .edit-dispute-btn
-          = f.submit 'Submit Dispute', class: "btn btn-primary"
+          .edit-dispute-btn
+            = f.submit 'Update Dispute', class: "btn btn-primary"
+    - else
+      .upload-documents-container
+        | Upload documents to support your dispute
+        = s3_uploader_form callback_url: dispute_documents_url(@dispute.id, disputant: @disputant), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+          = file_field_tag :file, multiple: true
+        #uploads_container
+
+      script#template-upload type="text/x-tmpl" 
+        .upload id="upload_{%=o.unique_id%}" 
+          h5  %=o.name% 
+          .progress.progress-striped.active
+            .bar style=("width: 0%") 
+      .edit-dispute-fields
+        = form_for @dispute, url: dispute_path do |f|
+          = f.text_area :rebuttal, placeholder: "Enter in your reasons this doesn't warrant a takedown", class: "edit-dispute-text"
+
+          .edit-dispute-btn
+            = f.submit 'Update Dispute', class: "btn btn-primary"

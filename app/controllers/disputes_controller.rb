@@ -14,7 +14,7 @@ class DisputesController < ApplicationController
     @dispute = Dispute.find(params[:id])
     gon.votes = @dispute.survey.votes
     p gon
-    redirect_to root_path if params[:uid] != @dispute.uid
+    redirect_to root_path unless [@dispute.uid, @dispute.defendant_uid].include?(params[:uid])
   end
 
   def vote_show
@@ -28,7 +28,11 @@ class DisputesController < ApplicationController
 
   def edit
     @dispute = Dispute.find(params[:id])
-    redirect_to root_path if params[:uid] != @dispute.uid
+    if [@dispute.uid, @dispute.defendant_uid].include?(params[:uid])
+      @disputant = params[:uid] == @dispute.uid ? true : false
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -46,12 +50,9 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
-    uid = SecureRandom.hex(10)
-    @dispute.uid = uid
 
     if @dispute.save
-      p uid
-      redirect_to edit_dispute_path(@dispute, uid: uid)
+      redirect_to edit_dispute_path(@dispute, uid: @dispute.uid)
     else
       # TODO: better redirect
       redirect_to new_dispute_path

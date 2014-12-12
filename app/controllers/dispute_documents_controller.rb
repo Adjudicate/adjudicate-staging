@@ -6,6 +6,7 @@ class DisputeDocumentsController < ApplicationController
   def create
     @dispute_document = DisputeDocument.new(dispute_params)
     @dispute_document.dispute_id = params[:dispute_id]
+    @dispute_document.disputant = params[:disputant]
     if @dispute_document.save
     else
       Rails.logger.info(@dispute_document.errors.inspect) 
