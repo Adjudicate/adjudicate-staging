@@ -4,6 +4,7 @@ class Dispute < ActiveRecord::Base
   has_many :users, through: :dispute_users
   has_one :survey
 
+  before_create :create_uids
   after_create :after_create_methods
 
   validates_presence_of :creator_email
@@ -11,7 +12,6 @@ class Dispute < ActiveRecord::Base
 
   def after_create_methods
     attach_survey
-    create_uids
     AdminMailer.delay.dispute_submitted(self)
     AdminMailer.delay.send_confirmation_email(self)
   end
