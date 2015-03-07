@@ -16,6 +16,11 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
           = image_tag 'temp-logo2.png', class: 'adjudicate-logo'  
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
       ul.nav.navbar-nav.navbar-right
+        - if !current_user
+          li
+            = link_to "Sign up", signup_path
+          li
+            = link_to "Sign in", new_user_session_path
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#"
             - if !current_user

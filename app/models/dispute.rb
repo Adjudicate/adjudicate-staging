@@ -9,6 +9,7 @@ class Dispute < ActiveRecord::Base
 
   validates_presence_of :creator_email
   validates_presence_of :url
+  validates_presence_of :violator_contact
 
   def after_create_methods
     attach_survey

@@ -17,7 +17,7 @@
               .col-sm-12
                 h3.main-title Admin Controls
                 /user_invite_arbitrator
-              = form_tag "#{@user.id}/inform_defendant", multipart: true
+              = form_tag "#{@user.id}/inform_defendant", multipart: true do
               h5 style="text-align: center;"
                 | Inform Defendant
               .col-sm-4
@@ -31,18 +31,18 @@
                 = submit_tag 'Inform', class: 'btn btn-primary'  
             hr
             .row
-            = form_tag "#{@user.id}/invite_arbitrator", multipart: true
+            = form_tag user_invite_arbitrator_path(@user), method: 'post'
               h5 style="text-align: center;"
                 | Invite Arbitrators
               .col-sm-4
-                = label_tag 'upload emails as csv'
-                = file_field_tag 'file'
+                = label_tag 'enter emails separated by newline or ;'
+                = text_area_tag 'invitations', '', {size: "25x10"}
               .col-sm-8
                 = label_tag 'uid', 'UID', class: 'control-label'
                 = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID', class: 'form-control'
-            .row
-              .col-sm-12
-                = submit_tag 'Invite', class: 'btn btn-primary'
+              .row
+                .col-sm-12
+                  = submit_tag 'Invite', class: 'btn btn-primary'
 
 
 

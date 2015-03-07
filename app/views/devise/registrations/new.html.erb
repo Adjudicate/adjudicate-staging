@@ -9,13 +9,15 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= devise_error_messages! %>
 
-          <%= f.email_field :email, placeholder: 'Email', autofocus: true %>
+          <%= f.email_field :email, placeholder: 'Email', autofocus: true, required: true %>
 
-            <%= f.password_field :password, placeholder: "Password (#{@minimum_password_length} character min.)", autocomplete: "off" %>
+            <%= f.password_field :password, placeholder: "Password (#{@minimum_password_length} character min.)", autocomplete: "off", required: true %>
 
-            <%= f.password_field :password_confirmation, placeholder: 'Re-enter Password', autocomplete: "off" %>
+            <%= f.password_field :password_confirmation, placeholder: 'Re-enter Password', autocomplete: "off", required: true %>
 
-          <div><%= f.submit "Sign up", class: "btn btn-primary" %></div>
+            <%= f.select :role, ['adjudicator', 'defendant'], include_blank: false, required: true %>
+
+            <%= f.submit "Sign up", class: "btn btn-primary" %>
         <% end %>
 
         <%= link_to "or log in", new_session_path(resource_name), class: "toggle-entry"%>

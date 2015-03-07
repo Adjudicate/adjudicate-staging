@@ -23,9 +23,13 @@
                 = dispute.survey.deadline.strftime('%b %e, %Y')
             - if current_user.admin?
               .row
-                .col-sm.12
+                .col-sm-12
                   | Dispute UID: 
                   = dispute.uid
+              .row
+                .col-sm-12
+                  | Defendant email: 
+                  = dispute.creator_email
           .col-sm-4
             | Files: 
             - if dispute.dispute_documents.empty?

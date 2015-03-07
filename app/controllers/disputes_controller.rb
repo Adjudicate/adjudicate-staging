@@ -50,6 +50,7 @@ class DisputesController < ApplicationController
 
   def create
     @dispute = Dispute.new(dispute_params)
+    @dispute.users << current_user
 
     if @dispute.save
       redirect_to edit_dispute_path(@dispute, uid: @dispute.uid)

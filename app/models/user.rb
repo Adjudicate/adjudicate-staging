@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
     vote_created: 5
   }
 
-  def self.invite_from_spreadsheet(file, dispute)
-    CSV.foreach(file.path, headers: true) do |row|
-      user = User.find_or_initialize_by(email: row["email"])
+  def self.invite_from_list(list, dispute)
+    list.split(/[\n,;]/).each do |email|
+      user = User.find_or_initialize_by(email: email)
       temp_pw = nil
       if !user.persisted?
         temp_pw = SecureRandom.hex(5)
@@ -38,6 +38,14 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role == 'admin'
+  end
+
+  def defendant?
+    self.role == 'defendant'
+  end
+
+  def adjudicator
+    self.role == 'adjudicator'
   end
 
   def add_points(key)
