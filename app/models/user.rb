@@ -54,18 +54,18 @@ class User < ActiveRecord::Base
 
   private
 
-    def after_create_methods
-      create_default_username
-      AdminMailer.delay.new_user_signup(self)
-    end
+  def after_create_methods
+    create_default_username
+    AdminMailer.delay.new_user_signup(self)
+  end
 
-    def create_default_username
-      username = "user_#{self.role}#{1000 + self.id}"
-      self.update_column('username', username)
-    end
+  def create_default_username
+    username = "user_#{self.role}#{1000 + self.id}"
+    self.update_column('username', username)
+  end
 
-    def username_not_invalid
-      # need better validation so that it's only alphanumeric numbers
-      errors.add(:username, "is an invalid username") if ['sign_in', 'sign_up'].include?(username) || username.include?('.') || username.include?('/')
-    end
+  def username_not_invalid
+    # need better validation so that it's only alphanumeric numbers
+    errors.add(:username, "is an invalid username") if ['sign_in', 'sign_up'].include?(username) || username.include?('.') || username.include?('/')
+  end
 end

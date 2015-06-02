@@ -46,11 +46,11 @@ class UsersController < ApplicationController
 
   private
 
-    def get_user
-      @user = User.find_by_username(params[:id])
-    end
+  def get_user
+    @user = User.find_by_username(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:username, :email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
 end
