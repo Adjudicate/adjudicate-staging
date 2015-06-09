@@ -21,8 +21,11 @@ gem 'delayed_job_active_record'
 
 
 group :development do 
+  gem 'binding_of_caller'
   gem 'spring'
   gem "better_errors"
+  gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 group :production do
