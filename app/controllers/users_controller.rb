@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    get_user
+    user = get_user
+    @disputes = user.disputes.map{|dispute| DisputePresenter.new(dispute).form_data}.unshift('')
+    # Adding a blank element to the beginning of the array allows the placeholder text to show up. 
   end
 
   def edit
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
   def inform_defendant
     dispute = Dispute.find_by_uid(params[:defendant_uid])
     if current_user.admin? && dispute
-      AdminMailer.delay.inform_defendant(params[:defendant_email], dispute)
+      AdminMailer.delay.inform_defendant(dispute.violator_contact, dispute)
       redirect_to user_path(current_user), :flash => { :notice => "#{params[:defendant_email]} has been informed."}
     else
       redirect_to user_path(current_user), :flash => { :error => 'Errors: entered in wrong dispute UID'}

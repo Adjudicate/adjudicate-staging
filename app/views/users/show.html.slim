@@ -20,15 +20,14 @@
                   /user_invite_arbitrator
                   h5 style="text-align: center;"
                     | Inform Defendant
-                  .col-sm-4
-                    = label_tag 'Defendant email'
-                    = email_field_tag 'defendant_email'
-                  .col-sm-8
-                    = label_tag 'defendant_uid', 'UID', class: 'control-label'
-                    = text_field_tag 'defendant_uid', nil, placeholder: 'Enter the dispute UID', class: 'form-control'
-              .row
-                .col-sm-12
-                  = submit_tag 'Inform', class: 'btn btn-primary'  
+                  .col-sm-10
+                    .row
+                      .col-sm-3
+                        = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
+                      .col-sm-9
+                        = select_tag 'defendant_uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
+                  .col-sm-2
+                    = submit_tag 'Inform', class: 'btn btn-primary'  
             hr
             .row
             = form_tag user_invite_arbitrator_path(@user), method: 'post'
@@ -44,5 +43,8 @@
                 .col-sm-12
                   = submit_tag 'Invite', class: 'btn btn-primary'
 
-
+javascript:
+  $(function(){
+    $('select#defendant_uid').chosen();
+  });
 
