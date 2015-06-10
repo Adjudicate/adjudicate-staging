@@ -1,5 +1,5 @@
 class DisputesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :invite_users, :vote_show]
+  before_action :authenticate_user!
 
   def index
     if current_user.admin?
