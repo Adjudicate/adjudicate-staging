@@ -37,8 +37,9 @@ class UsersController < ApplicationController
   def inform_defendant
     dispute = Dispute.find_by_uid(params[:defendant_uid])
     if current_user.admin? && dispute
-      AdminMailer.delay.inform_defendant(dispute.violator_contact, dispute)
-      redirect_to user_path(current_user), :flash => { :notice => "#{params[:defendant_email]} has been informed."}
+      defendant_email = dispute.violator_contact
+      AdminMailer.delay.inform_defendant(defendant_email, dispute)
+      redirect_to user_path(current_user), :flash => { :notice => "#{defendant_email} has been informed."}
     else
       redirect_to user_path(current_user), :flash => { :error => 'Errors: entered in wrong dispute UID'}
     end
