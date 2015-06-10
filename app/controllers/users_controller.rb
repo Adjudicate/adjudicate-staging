@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def invite_arbitrator
-    p 'hi'
     dispute = Dispute.find_by_uid(params[:uid])
     if current_user.admin? && dispute
       User.invite_from_list(params[:invitations], dispute)
