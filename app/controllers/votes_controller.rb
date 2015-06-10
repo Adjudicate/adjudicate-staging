@@ -5,11 +5,11 @@ class VotesController < ApplicationController
     @vote.user = current_user
     @vote.survey = dispute.survey
     if @vote.save
-      flash[:notice] = 'Thank you for voting'
-      redirect_to dispute_vote_path(dispute, uid: dispute.uid)
+      flash[:notice] = "Thank you for voting on Dispute ##{dispute.id}"
+      redirect_to disputes_path
     else
       flash[:notice] = 'Vote was not processed, try again.'
-      redirect_to dispute_vote_path(dispute, uid: dispute.uid)
+      redirect_to disputes_path
     end
   end
 
