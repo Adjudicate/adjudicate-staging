@@ -1,0 +1,12 @@
+.row
+  .col-sm-6.col-sm-offset-3
+    .thank-you-container.panel.panel-success
+      .panel-heading
+        .text-center.h4 Vote Submitted!
+      .panel-body
+        .text-center
+          = "Thank you for voting on Dispute ##{@dispute.id}."
+        .row
+          .col-sm-4.col-sm-offset-4.text-center
+            .btn.btn-primary style="margin-top:15px;"
+              = link_to 'Return to Disputes', disputes_path, style: "color:white;"

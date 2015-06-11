@@ -23,5 +23,7 @@ Rails.application.routes.draw do
       post 'votes' => 'votes#create'
       patch 'votes' => 'votes#edit'
     end
+
+    resources :vote_submitted, only: [:index]
   end
 end
