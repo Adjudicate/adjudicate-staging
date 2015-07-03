@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212045105) do
+ActiveRecord::Schema.define(version: 20150611201730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "dispute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false

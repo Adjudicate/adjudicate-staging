@@ -2,6 +2,7 @@ class Dispute < ActiveRecord::Base
   has_many :dispute_documents, dependent: :destroy
   has_many :dispute_users
   has_many :users, through: :dispute_users
+  has_many :comments
   has_one :survey
 
   before_create :create_uids

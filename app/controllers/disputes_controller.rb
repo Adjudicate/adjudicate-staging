@@ -13,7 +13,7 @@ class DisputesController < ApplicationController
   def show
     @dispute = Dispute.find(params[:id])
     gon.votes = @dispute.survey.votes
-    p gon
+    @comments = @dispute.comments
     redirect_to root_path unless [@dispute.uid, @dispute.defendant_uid].include?(params[:uid])
   end
 
@@ -21,6 +21,8 @@ class DisputesController < ApplicationController
     @dispute = current_user.admin? ? Dispute.find(params[:dispute_id]) : Dispute.joins(:dispute_users).where(disputes: {id: params[:dispute_id] }, dispute_users: { user_id: current_user.id}).first
     if @dispute
       @vote = Vote.where(survey_id: @dispute.survey.id, user_id: current_user.id).first || Vote.new
+      @comment = Comment.new
+      @comments = @dispute.comments
     else
       redirect_to root_path
     end

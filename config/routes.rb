@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     end
 
     resources :vote_submitted, only: [:index]
+    resources :comments, only: [:create]
   end
 end

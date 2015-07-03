@@ -3,27 +3,28 @@
   .row
     .col-sm-8.col-sm-offset-2
       .row
-        .col-sm-4.col-sm-offset-4
-          h5 Dispute Reason
+        h5 Dispute Reason
       .row
-        .col-sm-8.col-sm-offset-2
-          = @dispute.reason
+        = @dispute.reason
       .row
-        .col-sm-4.col-sm-offset-4
-          h5 Violating Content
+        h5 Violating Content
       .row
-        .col-sm-8.col-sm-offset-2
-          = @dispute.violating_content
-  .row
-    .col-sm-8.col-sm-offset-2
-      .results-header
-        | Results
-      .results-content
-      - if @dispute.survey.ended?
-        | Average vote:  
-        = @dispute.survey.vote_average
-        |  Standard Deviation: 
-        = @dispute.survey.standard_deviation
-      - else 
-        | Dispute is being voted on.  Results will be available after 
-        = @dispute.survey.deadline.strftime('%D')
+        = @dispute.violating_content
+      .row
+        .results-header
+          h5 Results
+        .results-content
+        - if @dispute.survey.ended?
+          | Average vote:  
+          = @dispute.survey.vote_average
+          |  Standard Deviation: 
+          = @dispute.survey.standard_deviation        
+        - else 
+          | Dispute is being voted on.  Results will be available after 
+          = @dispute.survey.deadline.strftime('%D')
+      .row
+        hr
+        h4 Comments
+        - @comments.each do |comment|
+          h4= comment.author
+          p= comment.body

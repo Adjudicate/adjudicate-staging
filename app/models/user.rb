@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :dispute_users
   has_many :disputes, through: :dispute_users
+  has_many :comments
 
   after_create :after_create_methods
 

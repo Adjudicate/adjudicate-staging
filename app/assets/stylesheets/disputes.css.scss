@@ -2,6 +2,9 @@
   padding-top: 40px;
   width: 80%;
   margin: 0 auto;
+  h5 {
+    text-align: center;
+  }
 }
 .new-dispute-form{
   width: 300px;
@@ -55,4 +58,15 @@
 }
 .thank-you-container {
   margin-top: 20px;
+}
+.new-comment-form {
+  textarea {
+    height: 7em;
+    width: 100%;
+  }
+}
+
+.submit-btn {
+    margin: auto;
+    display: block !important;
 }
