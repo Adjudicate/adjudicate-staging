@@ -13,38 +13,39 @@
         = link_to 'Edit your profile', edit_user_path(@user)
         - if @user.admin?
           div.admin-controls
-            = form_tag user_inform_defendant_path(@user), method: 'post', multipart: true do
+            = form_tag user_inform_defendant_path(@user), method: 'post', multipart: true
               .row
-                .col-sm-12
-                  h3.main-title Admin Controls
-                  /user_invite_arbitrator
-                  h5 style="text-align: center;"
-                    | Inform Defendant
-                  .col-sm-10
-                    .row
-                      .col-sm-3
-                        = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
-                      .col-sm-9
-                        = select_tag 'defendant_uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
+                h3.main-title Admin Controls
+                /user_invite_arbitrator
+                h5 style="text-align: center;"
+                  | Inform Defendant
+                .col-sm-10
                   .col-sm-2
-                    = submit_tag 'Inform', class: 'btn btn-primary'  
+                    = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
+                  .col-sm-10
+                    = select_tag 'defendant_uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
+                .col-sm-2
+                  = submit_tag 'Inform', class: 'btn btn-primary'
             hr
             .row
             = form_tag user_invite_arbitrator_path(@user), method: 'post'
               h5 style="text-align: center;"
                 | Invite Arbitrators
-              .col-sm-4
-                = label_tag 'enter emails separated by newline or ;'
-                = text_area_tag 'invitations', '', {size: "25x10"}
-              .col-sm-8
-                = label_tag 'uid', 'UID', class: 'control-label'
-                = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID', class: 'form-control'
               .row
-                .col-sm-12
+                .col-sm-5
+                  = label_tag 'Enter emails seperated by comma:'
+                .col-sm-7.email-input
+                  = select_tag 'invitations', [], multiple: true, 'data-role'=> 'tagsinput', 'size'=>'25x10'
+              .row
+                .col-sm-5
+                  = label_tag 'uid', 'Dispute:', class: 'control-label'
+                .col-sm-7
+                  / = text_field_tag 'uid', nil, placeholder: 'Enter the dispute UID', class: 'form-control'  
+                  = select_tag 'uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'                
                   = submit_tag 'Invite', class: 'btn btn-primary'
 
 javascript:
   $(function(){
-    $('select#defendant_uid').chosen();
+    $('select#defendant_uid').chosen({width: "100%"});
   });
 

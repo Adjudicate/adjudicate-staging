@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require s3_direct_upload
 //= require chosen-jquery
+//= require bootstrap-tagsinput
 //= require_tree .

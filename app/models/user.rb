@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   }
 
   def self.invite_from_list(list, dispute)
-    list.split(/[\n,;]/).each do |email|
+    list.each do |email|
       user = User.find_or_initialize_by(email: email)
       temp_pw = nil
       if !user.persisted?
