@@ -35,7 +35,7 @@
                 .col-sm-5
                   = label_tag 'Enter emails seperated by comma:'
                 .col-sm-7.email-input
-                  = select_tag 'invitations', [], multiple: true, 'data-role'=> 'tagsinput', 'size'=>'25x10'
+                  = select_tag 'invitations', [], multiple: true, 'data-role'=> 'tagsinput', 'size'=>'25x10', 'style' => 'display:none;'
               .row
                 .col-sm-5
                   = label_tag 'uid', 'Dispute:', class: 'control-label'
