@@ -35,7 +35,7 @@
                 .col-sm-5
                   = label_tag 'Enter emails seperated by comma:'
                 .col-sm-7.email-input
-                  = select_tag 'invitations', [], multiple: true, 'data-role'=> 'tagsinput', 'style' => 'width:100%;'
+                  = select_tag 'invitations', '', multiple: true, 'style' => 'width:100%;'
               .row
                 .col-sm-5
                   = label_tag 'uid', 'Dispute:', class: 'control-label'
@@ -49,5 +49,6 @@ javascript:
   $(function(){
     $('select#defendant_uid').chosen({width: "100%"});
     $('select#uid').chosen({width: "100%"});
+    $('#invitations').tagsinput();
   });
 
