@@ -11,39 +11,36 @@
         = @user.points
       div
         = link_to 'Edit your profile', edit_user_path(@user)
+      .admin-controls
         - if @user.admin?
-          div.admin-controls
-            = form_tag user_inform_defendant_path(@user), method: 'post', multipart: true
-              .row
-                h3.main-title Admin Controls
-                /user_invite_arbitrator
-                h5 style="text-align: center;"
-                  | Inform Defendant
-                .col-sm-10
-                  .col-sm-2
-                    = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
-                  .col-sm-10
-                    = select_tag 'defendant_uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
-                .col-sm-2
-                  = submit_tag 'Inform', class: 'btn btn-primary'
-            hr
+          = form_tag user_inform_defendant_path(@user), method: 'post', multipart: true
             .row
+              h3.main-title Admin Controls
+              h5 style="text-align: center;" Inform Defendant
+              .col-sm-10
+                .col-sm-2
+                  = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
+                .col-sm-10
+                  = select_tag 'defendant_uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
+              .col-sm-2
+                = submit_tag 'Inform', class: 'btn btn-primary'
+          hr
+            h5 style="text-align: center;"
+              | Invite Arbitrators
             = form_tag user_invite_arbitrator_path(@user), method: 'post'
-              h5 style="text-align: center;"
-                | Invite Arbitrators
-              .row
-                .col-sm-5
-                  = label_tag 'Enter emails seperated by comma:'
-                .col-sm-7.email-input
-                  = select_tag 'invitations', '', multiple: true
-              .row
-                .col-sm-5
-                  = label_tag 'uid', 'Dispute:', class: 'control-label'
-                .col-sm-7
-                  = select_tag 'uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'                
-              .row
-                .col-sm-2.col-sm-offset-5
-                  = submit_tag 'Invite', class: 'btn btn-primary', style: 'margin: 15px auto; display: block;'
+            .row
+              .col-sm-5
+                = label_tag 'Enter emails seperated by comma:'
+              .col-sm-7.email-input
+                = select_tag 'invitations', '', multiple: true
+            .row
+              .col-sm-5
+                = label_tag 'uid', 'Dispute:', class: 'control-label'
+              .col-sm-7
+                = select_tag 'uid', options_for_select(@disputes), class: 'form-control', 'data-placeholder' => 'Select a Dispute..'                
+            .row
+              .col-sm-2.col-sm-offset-5
+                = submit_tag 'Invite', class: 'btn btn-primary', style: 'margin: 15px auto; display: block;'
 
 javascript:
   $(function(){
@@ -51,4 +48,3 @@ javascript:
     $('select#uid').chosen({width: "100%"});
     $('#invitations').tagsinput();
   });
-
