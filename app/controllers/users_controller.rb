@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    user = get_user
-    @disputes = user.disputes.map{|dispute| DisputePresenter.new(dispute).form_data}.unshift('')
+    @disputes = disputes
     # Adding a blank element to the beginning of the array allows the placeholder text to show up. 
   end
 
@@ -47,6 +46,16 @@ class UsersController < ApplicationController
 
 
   private
+
+  private
+
+  def disputes
+    user = get_user
+    if user.admin?
+      Dispute.all.map{|dispute| DisputePresenter.new(dispute).form_data}
+    else
+      user.disputes.map{|dispute| DisputePresenter.new(dispute).form_data}
+  end
 
   def get_user
     @user = User.find_by_username(params[:id])
