@@ -55,6 +55,7 @@ class UsersController < ApplicationController
       Dispute.all.map{|dispute| DisputePresenter.new(dispute).form_data}
     else
       user.disputes.map{|dispute| DisputePresenter.new(dispute).form_data}
+    end
   end
 
   def get_user
