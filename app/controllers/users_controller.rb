@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @disputes = disputes
-    # Adding a blank element to the beginning of the array allows the placeholder text to show up. 
   end
 
   def edit
@@ -43,16 +42,12 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
   def disputes
-    user = get_user
-    if user.admin?
-      Dispute.all.map{|dispute| DisputePresenter.new(dispute).form_data}
-    else
-      user.disputes.map{|dispute| DisputePresenter.new(dispute).form_data}
-    end
+    dispute_presenters = get_user.admin? ? Dispute.all : get_user.disputes
+    dispute_presenters.map{|dispute| DisputePresenter.new(dispute).form_data}
   end
+
+  private
 
   def get_user
     @user = User.find_by_username(params[:id])

@@ -16,6 +16,7 @@ class Dispute < ActiveRecord::Base
     attach_survey
     AdminMailer.delay.dispute_submitted(self)
     AdminMailer.delay.send_confirmation_email(self)
+    assign_to_admins
   end
 
   def attach_survey
@@ -25,6 +26,13 @@ class Dispute < ActiveRecord::Base
   def create_uids
     self.uid = SecureRandom.hex(10)
     self.defendant_uid = SecureRandom.hex(10)
+  end
+
+  def assign_to_admins
+    User.admins.includes(:disputes).each do |a| 
+      a.disputes << self if !a.disputes.include?(self)
+      a.save
+    end
   end
 
 end

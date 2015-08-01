@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     username
   end
 
+  def self.admins
+    User.where(role: 'admin')
+  end
+
   def admin?
     self.role == 'admin'
   end
