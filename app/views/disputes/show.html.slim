@@ -11,6 +11,15 @@
       .row
         = @dispute.violating_content
       .row
+        | Files:
+        - if @dispute.dispute_documents.present?
+          - @dispute.dispute_documents.each_with_index do |dd, index|
+            .row
+              .col-sm-12
+                = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
+        - else
+          | No files uploaded
+      .row
         .results-header
           h5 Results
         .results-content
