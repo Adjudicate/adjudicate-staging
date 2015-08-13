@@ -21,45 +21,42 @@
                 = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
         hr
       .row
-        .new-comment-form
-          h5 Add Comment
-          = form_for @comment, url: dispute_comments_path(@dispute.id) do |c|
-            = c.text_area :body, required: true, placeholder: 'Leave any comments you have about the dispute here.'
-            = c.submit 'Submit Comment', class: "btn btn-primary submit-btn"
-    - if !@dispute.survey.ended?      
-      .row
-        .col-sm-8.col-sm-offset-2
-          h5 Vote:
-          .col-sm-6.col-sm-offset-3
-            = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
-              br  
-              = f.radio_button "takedown", 1
-              | 1 (Strongly advise Takedown)
-              br
-              = f.radio_button "takedown", 2
-              | 2
-              br
-              = f.radio_button "takedown", 3
-              | 3
-              br
-              = f.radio_button "takedown", 4
-              | 4
-              br
-              = f.radio_button "takedown", 5
-              | 5 (Strongly advise No Takedown)
-              br
-
+        - if !@dispute.survey.ended?
+          h5 Vote
+          = form_for @vote, url: votes_dispute_survey_path(@dispute.id) do |f|
+            .row
+              .col-sm-6
+                .new-comment-form
+                  = f.fields_for @comment do |c|
+                    = c.text_area :body, required: true, placeholder: @comment.body.present? ? @comment.body : 'Leave any comments you have about the dispute here.'
+              .col-sm-6
+                = f.radio_button "takedown", 1
+                | 1 (Strongly advise Takedown)
+                br
+                = f.radio_button "takedown", 2
+                | 2
+                br
+                = f.radio_button "takedown", 3
+                | 3
+                br
+                = f.radio_button "takedown", 4
+                | 4
+                br
+                = f.radio_button "takedown", 5
+                | 5 (Strongly advise No Takedown)
+                br
+            .row
               = f.submit "Submit Vote", class: 'btn btn-primary submit-btn'
-    - else
-      .row
-        .col-sm-8.col-sm-offset-2
-          .results-header
-            | Results
-          .results-content
-            | Average vote:  
-            = @dispute.survey.vote_average
-            |  Standard Deviation: 
-            = @dispute.survey.standard_deviation
+        - else
+          .row
+            .col-sm-8.col-sm-offset-2
+              .results-header
+                | Results
+              .results-content
+                | Average vote:
+                = @dispute.survey.vote_average
+                |  Standard Deviation:
+                = @dispute.survey.standard_deviation
     - if current_user.admin?
       .row
         .col-sm-8.col-sm-offset-2

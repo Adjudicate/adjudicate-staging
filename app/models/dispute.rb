@@ -4,6 +4,7 @@ class Dispute < ActiveRecord::Base
   has_many :users, through: :dispute_users
   has_many :comments
   has_one :survey
+  accepts_nested_attributes_for :comments
 
   before_create :create_uids
   after_create :after_create_methods

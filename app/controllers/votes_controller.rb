@@ -1,10 +1,10 @@
 class VotesController < ApplicationController
   def create
-    dispute = Dispute.find(params[:dispute_id])
     @vote = Vote.new(vote_params)
     @vote.user = current_user
     @vote.survey = dispute.survey
-    if @vote.save!
+    @comment = Comment.new(comment_params)
+    if @vote.save! && @comment.save!
       redirect_to dispute_vote_submitted_index_path
     else
       flash[:notice] = 'Vote was not processed, try again.'
@@ -13,9 +13,9 @@ class VotesController < ApplicationController
   end
 
   def edit
-    dispute = Dispute.find(params[:dispute_id])
     @vote = Vote.where(user_id: current_user.id, survey_id: dispute.survey.id).first
-    if @vote.update_attributes(vote_params)
+    @comment = Comment.new(comment_params)
+    if @vote.update_attributes!(vote_params) && @comment.save!
       redirect_to dispute_vote_submitted_index_path
     else
       flash[:notice] = 'Vote was not processed, try again.'
@@ -24,7 +24,16 @@ class VotesController < ApplicationController
   end
 
   private
-    def vote_params
-      params.require(:vote).permit(:takedown)
-    end
+
+  def dispute
+    @dispute ||= Dispute.find(params[:dispute_id])
+  end
+
+  def vote_params
+    params.require(:vote).permit(:takedown)
+  end
+
+  def comment_params
+    params.require(:vote).require(:comment).permit(:body).merge(dispute_id: @dispute.id, user_id: current_user.id)
+  end
 end
