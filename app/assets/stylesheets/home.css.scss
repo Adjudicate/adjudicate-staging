@@ -1,5 +1,5 @@
 .home-background {
-  background-image: image-url('temp-background.jpg');
+  background-image: image-url('brickwall.jpg');
   background-size: cover;
   opacity: .7;
   position: absolute;
@@ -28,4 +28,15 @@
   background-color: rgba(200, 200, 200, 0.6);
   padding: 10px;
   border-radius: 10px;
+}
+.adjudicate-logo {
+  width: 30%;
+  height: 30%;
+  margin: 20px auto 0 auto;
+  display: block;
+}
+#new-dispute-btn {
+  text-align: center;
+  margin: auto;
+  display: block;
 }

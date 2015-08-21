@@ -1,9 +1,7 @@
-.content-container
-  .home-background
-  .row
-    .col-sm-8.col-sm-offset-2
-      h1.main-title
-        | ADJUDICATE!
-  .row
-    .col-sm-2.col-sm-offset-5
-      = link_to 'File a dispute', new_dispute_path, class: 'btn btn-primary'
+.home-background
+.row
+	= image_tag 'adjudicate-logo.png', class: 'adjudicate-logo'
+
+.row
+	.col-sm-2.col-sm-offset-5
+		= link_to 'File a dispute', new_dispute_path, class: 'btn btn-primary', id: 'new-dispute-btn'
