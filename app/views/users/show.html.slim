@@ -31,14 +31,14 @@
               h5 style="text-align: center;"
                 | Invite Arbitrators
               .row
-                .col-sm-5
+                .col-sm-4
                   = label_tag 'Enter emails seperated by comma:'
-                .col-sm-7.email-input
+                .col-sm-8.email-input
                   = text_field_tag 'invitations'
               .row
-                .col-sm-5
+                .col-sm-4
                   = label_tag 'uid', 'Dispute:', class: 'control-label'
-                .col-sm-7
+                .col-sm-8
                   = select_tag 'uid', options_for_select(@disputes), include_blank: true, class: 'form-control', 'data-placeholder' => 'Select a Dispute..' 
               .row
                 .col-sm-2.col-sm-offset-5
@@ -46,7 +46,7 @@
 
 javascript:
   $(function(){
-    $('select#defendant_uid').chosen({width: "100%"});
+    $('.form-control').chosen({width: "100%"});
     $('#invitations').tagsInput({
       'height': '100%',
       'width': '100%',

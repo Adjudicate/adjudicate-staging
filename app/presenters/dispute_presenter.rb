@@ -6,6 +6,6 @@ class DisputePresenter
 	end
 
 	def form_data
-		["#{dispute.creator_email} v. #{dispute.violator_contact}", dispute.uid]
+		["#{dispute.creator_email} v. #{dispute.violator_contact} - #{dispute.uid}", dispute.uid]
 	end
 end
