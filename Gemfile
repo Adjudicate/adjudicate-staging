@@ -20,6 +20,7 @@ gem 'gon'
 gem 'devise'
 gem 'delayed_job_active_record'
 gem 'chosen-rails'
+gem 'tagsinput-rails'
 
 group :development do 
   gem 'binding_of_caller'

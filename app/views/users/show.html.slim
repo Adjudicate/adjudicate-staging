@@ -14,19 +14,19 @@
         - if @user.admin?
           .row.admin-controls
             = form_tag user_inform_defendant_path(@user), method: 'post', multipart: true
-              h3.main-title Admin Controls
-              /user_invite_arbitrator
-              h5 style="text-align: center;"
-                | Inform Defendant
-              .col-sm-10
-                .col-sm-2
-                  = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
+              .row
+                h3.main-title Admin Controls
+                /user_invite_arbitrator
+                h5 style="text-align: center;"
+                  | Inform Defendant
                 .col-sm-10
-                  = select_tag 'defendant_uid', options_for_select(@disputes), include_blank: true, class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
-              .col-sm-2
-                = submit_tag 'Inform', class: 'btn btn-primary'
+                  .col-sm-2
+                    = label_tag 'defendant_uid', 'Dispute:', class: 'control-label'
+                  .col-sm-10
+                    = select_tag 'defendant_uid', options_for_select(@disputes), include_blank: true, class: 'form-control', 'data-placeholder' => 'Select a Dispute..'
+                .col-sm-2
+                  = submit_tag 'Inform', class: 'btn btn-primary'
             hr
-            .row
             = form_tag user_invite_arbitrator_path(@user), method: 'post'
               h5 style="text-align: center;"
                 | Invite Arbitrators
@@ -34,7 +34,7 @@
                 .col-sm-5
                   = label_tag 'Enter emails seperated by comma:'
                 .col-sm-7.email-input
-                  = select_tag 'invitations', '', multiple: true, 'data-role'=> 'tagsinput', style: 'display:none;'
+                  = text_field_tag 'invitations'
               .row
                 .col-sm-5
                   = label_tag 'uid', 'Dispute:', class: 'control-label'
@@ -47,5 +47,11 @@
 javascript:
   $(function(){
     $('select#defendant_uid').chosen({width: "100%"});
+    $('#invitations').tagsInput({
+      'height': '100%',
+      'width': '100%',
+      'defaultText': 'Add an email.',
+      'minInputWidth': '100%'
+    });
   });
 

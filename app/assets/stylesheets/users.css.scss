@@ -9,14 +9,24 @@
   margin: 10px 0;
 }
 .email-input {
-	.tag {
+	margin-bottom: 5px;
+	.tagsinput {
+		border-radius: 5px;
+	}
+	#invitations_tag {
+		margin: 0;
+	}
+
+	.tagsinput span.tag {
 		background-color: #428bca;
+		color: white;
+		border: 1px solid #357EBD;
+		border-radius: 3px;
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 		font-size: 14px;
 		font-weight: normal;
-	}
-	.bootstrap-tagsinput {
-		width: 100% !important;
-		line-height: 2;
+		a {
+			color: white;
+		}
 	}
 }
