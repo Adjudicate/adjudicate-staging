@@ -7,14 +7,13 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      .adjudicate-logo-container
-      - if !current_user
-        = link_to root_path do
-          = image_tag 'temp-logo2.png', class: 'adjudicate-icon'
-      - else
-        = link_to disputes_path do
-          = image_tag 'temp-logo2.png', class: 'adjudicate-icon'
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
+      ul.nav.navbar-nav.navbar-left
+        li
+          - if !current_user
+            = link_to "Home", root_path
+          - else
+            = link_to "Home", disputes_path
       ul.nav.navbar-nav.navbar-right
         - if !current_user
           li
