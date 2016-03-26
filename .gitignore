@@ -18,3 +18,5 @@
 /tmp
 
 .env
+
+/config/local_env.yml
