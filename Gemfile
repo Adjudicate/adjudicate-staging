@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
+
+gem 'activemerchant'
 gem 'rails', '4.1.6'
 gem 'dotenv-rails'
 gem 'turbolinks'
