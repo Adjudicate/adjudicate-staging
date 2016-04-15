@@ -39,11 +39,25 @@ class DisputesController < ApplicationController
 
   def update
     @dispute = Dispute.find(params[:id])
-    if @dispute.update_attributes(dispute_params)
-      redirect_to dispute_path(@dispute, uid: @dispute.uid)
+    if current_user.admin?
+      if @dispute.update_attributes(dispute_params)
+        redirect_to dispute_path(@dispute, uid: @dispute.uid)
+      else
+        redirect_to edit_dispute_path(@dispute)
+      end
     else
-      redirect_to edit_dispute_path(@dispute)
+      if @dispute.update_attributes(dispute_params) && 
+         @dispute.save_with_payment
+         redirect_to dispute_path(@dispute, uid: @dispute.uid), 
+         :notice => "Thank you for using Adjudicate!"
+      else
+        redirect_to edit_dispute_path(@dispute)
+      end
     end
+  end
+
+  def pay
+     @dispute = Dispute.find(params[:id])
   end
 
   def new
@@ -83,7 +97,7 @@ class DisputesController < ApplicationController
   private
 
     def dispute_params
-      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email, :violator_contact)
+      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email, :violator_contact, :stripe_card_token)
     end
 
 end

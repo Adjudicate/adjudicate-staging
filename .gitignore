@@ -20,3 +20,4 @@
 .env
 
 /config/local_env.yml
+/config/initializers/stripe.rb

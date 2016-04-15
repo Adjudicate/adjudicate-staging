@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-
+gem 'stripe'
 gem 'activemerchant'
 gem 'rails', '4.1.6'
 gem 'dotenv-rails'
-gem 'turbolinks'
+
 gem 's3_direct_upload'
 gem 'aws-sdk'
 gem 'paperclip'

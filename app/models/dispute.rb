@@ -13,6 +13,20 @@ class Dispute < ActiveRecord::Base
   validates_presence_of :url
   validates_presence_of :violator_contact
 
+  attr_accessor :stripe_card_token
+
+
+  def save_with_payment
+    charge = Stripe::Charge.create(
+    :amount => 9000, # amount in cents
+    :currency => "usd",
+    :card => stripe_card_token,
+    :description => "New Dispute"
+    )
+    rescue Stripe::CardError => e
+      # The card has been declined
+  end
+
   def after_create_methods
     attach_survey
     AdminMailer.delay.dispute_submitted(self)

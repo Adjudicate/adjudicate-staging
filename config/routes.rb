@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/how-it-works' => 'static#how_it_works'
   get '/about' => 'static#about'
 
+
   resources :users, only: [:show, :edit, :update] do 
     post 'invite_arbitrator' => 'users#invite_arbitrator'
     post 'inform_defendant' => 'users#inform_defendant'
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
+    get '/disputes/:id/pay' => 'disputes#pay'
   resources :disputes do 
     resources :dispute_documents, only: [:index, :create, :show], as: 'documents'
     get 'vote' => 'disputes#vote_show'
