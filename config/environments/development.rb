@@ -8,6 +8,9 @@ Rails.application.configure do
   end if File.exists?(env_file)
 end
 
+STRIPE_PUBLIC_KEY = "pk_test_m8OqlgpTDYwDaQsoWstjGnXP",
+Stripe.api_key  = "sk_test_FKOCq3BSbZptBHRXq07uNfxs"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
