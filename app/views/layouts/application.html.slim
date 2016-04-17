@@ -7,7 +7,7 @@ html
     = javascript_include_tag 'https://js.stripe.com/v1/', 'application'
     script src="http://d3js.org/d3.v3.min.js" charset="utf-8"
     = csrf_meta_tags
-    = tag :meta, :name => "stripe-key", :content => Stripe.api_key
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
   body
     = render partial: 'layouts/top_navbar'
     = render partial: 'layouts/flash_messages'
