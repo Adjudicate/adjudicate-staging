@@ -6,8 +6,11 @@ Rails.application.configure do
   config.cache_classes = true
 
 
-Stripe.api_key = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
-STRIPE_PUBLIC_KEY = "sk_live_IV8U520L3LnekvKLRU2SJCA"
+ 
+STRIPE_PUBLIC_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+
+# Stripe.api_key =
+# "sk_live_IV8U520L3LnekvKLRU2SJCA"
 
 
   # Eager load code on boot. This eager loads most of Rails and
