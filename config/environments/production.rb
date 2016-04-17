@@ -8,6 +8,7 @@ Rails.application.configure do
 
  
 STRIPE_PUBLIC_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+# the secret key set as a constant
 
 # Stripe.api_key =
 # "sk_live_IV8U520L3LnekvKLRU2SJCA"
