@@ -7,7 +7,7 @@ Rails.application.configure do
 
 
  
-Stripe.api_key = = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+SECRET_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
 
 STRIPE_PUBLIC_KEY = "sk_live_IV8U520L3LnekvKLRU2SJCA"
 

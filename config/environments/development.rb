@@ -10,7 +10,8 @@ end
 
 
 
-Stripe.api_key = "sk_test_FKOCq3BSbZptBHRXq07uNfxs"
+SECRET_KEY = "sk_test_FKOCq3BSbZptBHRXq07uNfxs"
+
 STRIPE_PUBLIC_KEY = "pk_test_m8OqlgpTDYwDaQsoWstjGnXP"
  
 
