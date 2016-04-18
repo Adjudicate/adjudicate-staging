@@ -18,7 +18,7 @@ class Dispute < ActiveRecord::Base
 
   def save_with_payment
     charge = Stripe::Charge.create(
-    :amount => 100, # amount in cents
+    :amount => 9000, # amount in cents
     :currency => "usd",
     :card => stripe_card_token,
     :description => "New Dispute"
