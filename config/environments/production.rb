@@ -7,9 +7,11 @@ Rails.application.configure do
 
 
  
-SECRET_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+SECRET_KEY = "sk_live_IV8U520L3LnekvKLRU2SJCA"
 
-STRIPE_PUBLIC_KEY = "sk_live_IV8U520L3LnekvKLRU2SJCA"
+STRIPE_PUBLIC_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+
+
 
 
   # Eager load code on boot. This eager loads most of Rails and
