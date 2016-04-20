@@ -1,9 +1,10 @@
-.disputes-background
 .disputes-container
   .row
     .col-sm-8.col-sm-offset-2
       .row
-        .dispute-title.h4 Dispute
+        .dispute-title.h4 
+          | Dispute 
+          = @dispute.id
         - if current_user.admin? 
           = link_to 'Edit Dispute', edit_dispute_url(@dispute, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
       .row
