@@ -1,10 +1,14 @@
+.disputes-background
 .disputes-container
   .row
     .col-sm-8.col-sm-offset-2
       .row
         .dispute-title.h4 Dispute
-        - if current_user.admin?
-          = link_to 'Edit', edit_dispute_url(@dispute, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
+        - if current_user.admin? 
+          = link_to 'Edit Dispute', edit_dispute_url(@dispute, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
+      .row
+        -if current_user.admin?
+          = link_to "Delete Dispute", dispute_url(@dispute, uid: params[:uid]), :method => :delete, class: "btn btn-primary delete-dispute-btn", :data => {:confirm => "You Sure?"}
       .row
         h5 Dispute Reason
       .row

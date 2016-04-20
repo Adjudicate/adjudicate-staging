@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
-    get '/disputes/:id/pay' => 'disputes#pay'
   resources :disputes do 
     resources :dispute_documents, only: [:index, :create, :show], as: 'documents'
     get 'vote' => 'disputes#vote_show'

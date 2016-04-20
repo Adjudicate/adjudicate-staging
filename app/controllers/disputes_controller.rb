@@ -77,6 +77,10 @@ class DisputesController < ApplicationController
   end
 
   def destroy
+    @dispute = Dispute.find(params[:id])
+    @dispute.delete
+    redirect_to disputes_path
+
   end
 
   def invite_users

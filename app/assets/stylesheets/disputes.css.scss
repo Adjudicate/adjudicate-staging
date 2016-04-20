@@ -2,6 +2,18 @@
   display: none;
 }
 
+.disputes-background {
+  background-image: image-url('brickwall.jpg');
+  background-size: cover;
+  opacity: .5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -100;
+}
+
 .disputes-container{
   padding-top: 40px;
   width: 80%;
@@ -46,7 +58,8 @@
 }
 .dispute-main-header{
   text-align: center;
-  color: #6f6f6f;
+  /*color: #6f6f6f;*/
+  color: #428bca;
 }
 .upload-documents-container{
   width: 300px;
@@ -105,5 +118,12 @@
 }
 .edit-dispute-btn {
   float: right;
-  width: 80px;
+  width: 120px;
 }
+.delete-dispute-btn {
+  float: right;
+  width: 120px;
+}
+
+
+
