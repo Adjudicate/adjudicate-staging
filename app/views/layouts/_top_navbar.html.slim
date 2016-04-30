@@ -1,4 +1,4 @@
-nav.navbar.navbar-default.no-bottom-margin role="navigation"
+nav.top-nav.navbar.navbar-default.no-bottom-margin role="navigation"
   .container-fluid
     .navbar-header
       .button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -10,35 +10,24 @@ nav.navbar.navbar-default.no-bottom-margin role="navigation"
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
       ul.nav.navbar-nav.navbar-left
         li
-          - if !current_user
-            = link_to "Home", root_path
-          - else
-            = link_to "Home", disputes_path
-      ul.nav.navbar-nav.navbar-right
+          = image_tag 'adjudicate-logo.png', class: 'header-logo'
+      ul.nav-links.nav.navbar-nav.navbar-right
         - if !current_user
           li
-            = link_to "Sign in", new_user_session_path
-        li.dropdown
-          a.dropdown-toggle data-toggle="dropdown" href="#"
-            - if !current_user
-              | About Us
-            - else
-              | #{current_user.username}
-            span.caret
-          ul.dropdown-menu role="menu"
-            - if !current_user
-              li
-                = link_to "How it works", how_it_works_path
-              li
-                = link_to "About us", about_path
-            - else
-              li
-                = link_to "Current disputes", disputes_path
-              li
-                = link_to "Create a dispute", new_dispute_path
-              li
-                = link_to "My account", user_path(current_user)
-              li.divider
-              li
-                = link_to "Sign out", destroy_user_session_path, method: :delete
+            = link_to "Home", root_path, class: 'nav-link'
+          li
+            = link_to "Sign in", new_user_session_path, class: 'nav-link'
+          li
+            = link_to "About us", about_path, class: 'nav-link'
+        - else 
+          li
+            = link_to "Home", root_path, class: 'nav-link'
+          li
+            = link_to "My disputes", disputes_path, class: 'nav-link'
+          li
+            = link_to "File a dispute", new_dispute_path, class: 'nav-link'
+          li
+            = link_to "My account", user_path(current_user), class: 'nav-link'
+          li
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link'
 

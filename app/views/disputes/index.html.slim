@@ -1,60 +1,29 @@
+.disputes-background
 .disputes-container
   .dispute-main-header
-    h3 Current Disputes
+    h3
+      |  Disputes for 
+      =current_user.username
   .dispute-list
+      .row.dispute-list-item
+        .col-sm-6
+          | Dispute
+        .col-sm-3 
+          | Date Filed
+        .col-sm-3
+          | Deadline to Vote
+  .dispute-list        
     - @disputes.each do |dispute|
-      .dispute-list-item
-        .row
-          .col-sm-4
-            .row
-              .col-sm-12
-                - if current_user.admin?
-                  = link_to "Dispute ##{dispute.id}", dispute_path(dispute, uid: dispute.uid)
-                - else
-                  | Dispute #
-                  = dispute.id
-            .row
-              .col-sm-12
-                | website: 
-                = dispute.url
-            .row
-              .col-sm-12.dli-right
-                | Survey Deadline: 
-                = dispute.survey.deadline.strftime('%b %e, %Y')
-            - if current_user.admin?
-              .row
-                .col-sm-12
-                  | Dispute UID: 
-                  = dispute.uid
-              .row
-                .col-sm-12
-                  | Defendant email: 
-                  = dispute.creator_email
-          .col-sm-4
-            | Files: 
-            - if dispute.dispute_documents.empty?
-              | No files uploaded
-            - else
-              - dispute.dispute_documents.each_with_index do |dd, index|
-                .row
-                  .col-sm-12
-                    = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
-          .col-sm-4
-            - if dispute.survey.ended? || current_user.admin?
-              .row
-                .col-sm-12
-                  | Average vote:  
-                  = dispute.survey.vote_average
-              .row
-                .col-sm-12
-                  |  Standard Deviation: 
-                  = dispute.survey.standard_deviation
-              .row
-                .col-sm-12
-                  | Number of votes:
-                  = dispute.survey.votes.count
-              .row
-                .col-sm-12
-                  #d3-bar-chart
-            - if !dispute.survey.ended?
-              = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid)
+      .row.dispute-list-item
+        .col-sm-6
+          = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+        .col-sm-3
+          -unless dispute.created_at == nil
+            = dispute.created_at.strftime("%m/%d/%Y")
+          -else 
+            | Not Available
+        .col-sm-3
+          -if !dispute.survey.ended?
+            = dispute.survey.deadline.strftime("%m/%d/%Y")
+          -else
+            | Vote Closed

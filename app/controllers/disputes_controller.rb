@@ -2,6 +2,7 @@ class DisputesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+
     if current_user.admin?
       @disputes = Dispute.all
     else
@@ -12,6 +13,7 @@ class DisputesController < ApplicationController
 
   def show
     @dispute = Dispute.find(params[:id])
+    @disputant = params[:uid] == @dispute.uid ? true : false
     gon.votes = @dispute.survey.votes
     @comments = @dispute.comments
     redirect_to root_path unless [@dispute.uid, @dispute.defendant_uid].include?(params[:uid])
@@ -101,7 +103,7 @@ class DisputesController < ApplicationController
   private
 
     def dispute_params
-      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email, :violator_contact, :stripe_card_token)
+      params.require(:dispute).permit(:url, :violating_content, :reason, :creator_email, :violator_contact, :stripe_card_token, :created_at)
     end
 
 end

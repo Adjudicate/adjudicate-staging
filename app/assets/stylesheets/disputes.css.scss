@@ -1,3 +1,8 @@
+
+.header-logo{
+  height: 40px;
+}
+
 #user_role{
   display: none;
 }
@@ -15,11 +20,17 @@
 }
 
 .disputes-container{
-  padding-top: 40px;
-  width: 80%;
-  margin: 0 auto;
+  background-color: #f8f8f8;
+  opacity: 0.9;
+  margin: 70px;
+
+  
+
   h5 {
     text-align: center;
+  }
+  h3 {
+   padding: 10px;
   }
 }
 
@@ -58,7 +69,7 @@
 }
 .dispute-main-header{
   text-align: center;
-  color: #6f6f6f;
+  color: #003e7b;
 }
 .upload-documents-container{
   width: 300px;
@@ -77,21 +88,16 @@
   width: 300px;
   height: 100px;
 }
-.edit-dispute-btn{
-  margin: 0 auto;
-  width: 120px;
-}
+
 /*.edit-dispute-fields textarea{
   resize: none;
 }*/
 .dispute-list{
   width: 80%;
   margin: 0 auto;
+  color: #003e7b;
 }
 .dispute-list-item{
-  background-color: #f8f8f8;
-  border: 1px solid #e7e7e7;
-  border-radius: 5px;
   padding: 5px 10px;
   margin: 10px;
   text-align: center;
@@ -114,15 +120,18 @@
 .dispute-title {
   display: inline-block;
   margin-left: 0;
+  color: #003e7b;
 }
 .edit-dispute-btn {
   float: right;
-  width: 120px;
+  width: 130px;
 }
 .delete-dispute-btn {
   float: right;
-  width: 120px;
+  width: 130px;
 }
+
+
 
 
 

@@ -1,10 +1,19 @@
+.disputes-background
 .disputes-container
   .row
     .col-sm-8.col-sm-offset-2
       .row
         .dispute-title.h4 
-          | Dispute 
+          | Dispute no: 
           = @dispute.id
+        br
+        .dispute-title.h4
+          | Dispute UID: 
+          = @dispute.uid
+      .row
+        -if @disputant && !@dispute.survey.ended?
+          = link_to "Vote", dispute_vote_path(@dispute.id, uid: @dispute.uid), class: "btn btn-primary edit-dispute-btn"
+      .row    
         - if current_user.admin? 
           = link_to 'Edit Dispute', edit_dispute_url(@dispute, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
       .row

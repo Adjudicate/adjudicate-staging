@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611201730) do
+ActiveRecord::Schema.define(version: 20160429032353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,14 +66,15 @@ ActiveRecord::Schema.define(version: 20150611201730) do
   end
 
   create_table "disputes", force: true do |t|
-    t.string "url",               null: false
-    t.string "reason"
-    t.text   "violating_content"
-    t.string "creator_email"
-    t.string "uid"
-    t.string "violator_contact"
-    t.string "defendant_uid"
-    t.text   "rebuttal"
+    t.string   "url",               null: false
+    t.string   "reason"
+    t.text     "violating_content"
+    t.string   "creator_email"
+    t.string   "uid"
+    t.string   "violator_contact"
+    t.string   "defendant_uid"
+    t.text     "rebuttal"
+    t.datetime "created_at"
   end
 
   create_table "surveys", force: true do |t|

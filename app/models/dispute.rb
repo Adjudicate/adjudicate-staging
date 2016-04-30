@@ -38,6 +38,8 @@ class Dispute < ActiveRecord::Base
     self.survey = Survey.attach_default(self.id)
   end
 
+  
+
   def create_uids
     self.uid = SecureRandom.hex(10)
     self.defendant_uid = SecureRandom.hex(10)
