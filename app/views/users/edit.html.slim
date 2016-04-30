@@ -1,21 +1,23 @@
-.row
-  .col-sm-2
-  .col-sm-8
-    .edit-user
-      h2 Edit your Profile
-      = form_for @user, url: user_path(@user), class: 'form-horizontal' do |f|
-        .form-group
-          = f.label :username, class: 'control-label'
-          = f.text_field :username, class: 'form-control'
+.disputes-background
+.disputes-container
+  .row
+    .col-sm-2
+    .col-sm-8
+      .edit-user
+        h2 Edit your Profile
+        = form_for @user, url: user_path(@user), class: 'form-horizontal' do |f|
+          .form-group
+            = f.label :username, class: 'control-label'
+            = f.text_field :username, class: 'form-control'
 
-        .form-group
-          = f.label :email, class: 'control-label'
-          = f.text_field :email, class: 'form-control'
+          .form-group
+            = f.label :email, class: 'control-label'
+            = f.text_field :email, class: 'form-control'
 
-        .form-group
-          = f.label :password, class: 'control-label'
-          = f.password_field :password, class: 'form-control'
+          .form-group
+            = f.label :password, class: 'control-label'
+            = f.password_field :password, class: 'form-control'
 
-        .form-group
-          = f.submit "Save", class: 'btn btn-primary'
-  .col-sm-2
+          .form-group
+            = f.submit "Save", class: 'btn btn-primary'
+    .col-sm-2 
