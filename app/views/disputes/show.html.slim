@@ -3,11 +3,16 @@
   .row
     .col-sm-8.col-sm-offset-2
       .row
-        .dispute-title.h4 
+        .dispute-title.h4
+          = @dispute.creator_email
+          |  v. 
+          = @dispute.violator_contact
+        br
+        .dispute-title.h5 
           | Dispute no: 
           = @dispute.id
         br
-        .dispute-title.h4
+        .dispute-title.h5
           | Dispute UID: 
           = @dispute.uid
       .row
