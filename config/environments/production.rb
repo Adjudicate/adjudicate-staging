@@ -100,4 +100,7 @@ STRIPE_PUBLIC_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+config.serve_static_assets = true
+config.assets.compile = true
 end
