@@ -1,7 +1,55 @@
-.home-background
+img.home-background[src='assets/brickwall_cropped_2.jpg']
+img.home-image[src='assets/judge_chair_cropped_2.jpg']
 .row
-	= image_tag 'adjudicate-logo.png', class: 'adjudicate-logo'
+  .container-fluid.slogan-container
+    .slogan
+      |The Fair Way To Resolve Your Case
+  .container.text-on-image    
+    .btn.new-dispute-btn
+   	  = link_to "File a dispute", new_dispute_path, class: 'btn btn-primary', id: 'new-dispute-btn'
+.row
+  .bottom-section-container.container
+    .col-sm-4
+      .about-us
+        .crowd-icon
+          i.fa.fa-gavel[aria-hidden="true"]
+        .bottom-heading
+          |About Us 
+        p.bottom-content 
+          br
+          |At Adjudicate Online, we exist for one purpose: to improve the way the people resolve disputes.  
+           We offer an alternative to dispute resolution that is cheaper, faster, and fairer than any other option available. 
+		   Using Adjudicate Online is similar to going to court, except you'll save tens of thousands of dollars, 
+		   you'll spend weeks instead of years, 
+		   and a greater number of people will hear your case.
+    .col-sm-4
+      .how-it-works
+        .gavel-icon
+          i.fa.fa-cogs[aria-hidden="true"]
+        .bottom-heading
+          |How It Works
+        p.bottom-content
+          br
+          |Our process rests on one basic principle that has been proven through statistical analysis time and time again: that two heads are better than one – 
+            and that fifty are better than eleven-or-less.  
+            In a typical dispute, your case may be heard by a single judge, 
+            a panel of three arbitrators, or a jury of eleven people.  
+            At Adjudicate Online, more than fifty people experience and trained in arbitration will be asked to review your case, register a 
+            vote, and justify their decision in writing.  
 
-.row
-	.col-sm-2.col-sm-offset-5
-		= link_to 'File a dispute', new_dispute_path, class: 'btn btn-primary', id: 'new-dispute-btn'
+    .col-sm-4
+      .contact-us
+        .contact-icon
+          i.fa.fa-envelope[aria-hidden="true"]
+        .bottom-heading
+          |Contact Us
+        p.bottom-content
+          br
+          | Adjudicate Online, Inc.
+          br
+          |Oakland, CA 
+          br
+          |(510) 273 8880
+          br
+          |Peter@adjudicateonline.com
+
