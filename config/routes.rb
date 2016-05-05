@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'static#home'
   get '/how-it-works' => 'static#how_it_works'
   get '/about' => 'static#about'
+  get '/terms' => 'static#terms'
+  get '/rules' => 'static#rules'
 
 
   resources :users, only: [:show, :edit, :update] do 

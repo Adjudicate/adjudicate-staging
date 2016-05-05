@@ -1,0 +1,22 @@
+nav.navbar.navbar-default.footer role="navigation"
+  .container-fluid
+    .nav.navbar-nav.navbar-left.col-sm-4
+      .footer-left
+        = link_to "Terms Of Service", terms_path, class: 'nav-link'
+        br
+        = link_to "Rules Of Arbitration", rules_path, class: 'nav-link'
+    .col-sm-3.footer-middle
+      = link_to "About us", about_path, class: 'nav-link'
+      br 
+      = link_to "How It Works", how_it_works_path, class: 'nav-link'
+    .col-sm-3.footer-middle
+      = link_to "Home", root_path, class: 'nav-link'
+
+
+    .nav.navbar-nav.navbar-right
+      = image_tag 'adjudicate-logo.png', class: 'footer-logo'
+      div.footer-right
+        br
+        | ©2016 Adjudicate Online, Inc.
+
+

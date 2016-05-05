@@ -1,28 +1,29 @@
-.disputes-background
-.disputes-container
-  .dispute-main-header
-    h3
-      |  Disputes for 
-      =current_user.username
-  .dispute-list
-      .row.dispute-list-item
-        .col-sm-6
-          | Dispute
-        .col-sm-3 
-          | Date Filed
-        .col-sm-3
-          | Deadline to Vote
-  .dispute-list        
-    - @disputes.each do |dispute|
-      .row.dispute-list-item
-        .col-sm-6
-          = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
-        .col-sm-3
-          | Not Available
-          /! = dispute.created_at.strftime("%m/%d/%Y")
-          
-        .col-sm-3
-          -if !dispute.survey.ended?
-            = dispute.survey.deadline.strftime("%m/%d/%Y")
-          -else
-            | Vote Closed
+.whole-page  
+  .disputes-background
+  .disputes-container
+    .dispute-main-header
+      h3
+        |  Disputes for 
+        =current_user.username
+    .dispute-list
+        .row.dispute-list-item
+          .col-sm-6
+            | Dispute
+          .col-sm-3 
+            | Date Filed
+          .col-sm-3
+            | Deadline to Vote
+    .dispute-list        
+      - @disputes.each do |dispute|
+        .row.dispute-list-item
+          .col-sm-6
+            = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+          .col-sm-3
+            | Not Available
+            /! = dispute.created_at.strftime("%m/%d/%Y")
+            
+          .col-sm-3
+            -if !dispute.survey.ended?
+              = dispute.survey.deadline.strftime("%m/%d/%Y")
+            -else
+              | Vote Closed

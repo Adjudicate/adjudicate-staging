@@ -1,4 +1,12 @@
 
+.whole-page{
+  min-height: 525px;
+}
+
+.footer{
+  margin-bottom: 0 !important;
+  height: 100px;
+}
 .content-container {
   padding-left: 15px;
   padding-right: 15px;
@@ -45,9 +53,34 @@
 }
 .nav-link{
   color: #003e7b !important;
+  line-height: 2.5;
 }
 
+.footer{
+  margin-top: 30px;
+  font-size: 13px;
+}
 
+.footer-logo{
+  margin: 20px 0 0 0;
+  width: 120px;
+}
+
+.footer-right{
+  font-size: 10px;
+  margin-right: 20px;
+}
+
+.footer-left{
+  margin: 10px 0 0 50px;
+
+}
+
+.footer-middle{
+  margin: 10px 0 0 0;
+  border-left: 1px solid;
+  border-color: #003e7b;
+}
 
 
 

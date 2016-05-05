@@ -8,5 +8,11 @@ class StaticController < ApplicationController
 
   def how_it_works
   end
+
+  def terms
+  end
+
+  def rules
+  end
   
 end
