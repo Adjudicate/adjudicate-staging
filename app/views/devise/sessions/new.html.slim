@@ -1,20 +1,21 @@
-.content-container
-  .home-background
-  .home-content
-    .sign-up-form
-      .sign-up-fields
-        h2.form-h2
-          | Sign in
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          = f.email_field :email, placeholder: "Email", autofocus: true
+.whole-page 
+  .content-container
+    .home-background
+    .home-content
+      .sign-up-form
+        .sign-up-fields
+          h2.form-h2
+            | Sign in
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            = f.email_field :email, placeholder: "Email", autofocus: true
 
-          = f.password_field :password, placeholder: "Password", autocomplete: "off"
+            = f.password_field :password, placeholder: "Password", autocomplete: "off"
 
-          - if devise_mapping.rememberable?
-            = f.check_box :remember_me, class: 'signup-checkbox'
-            = f.label :remember_me
+            - if devise_mapping.rememberable?
+              = f.check_box :remember_me, class: 'signup-checkbox'
+              = f.label :remember_me
 
 
-          = f.submit "Sign in", class: "btn btn-primary"
-      br
-      = link_to "Forgot your password?", new_password_path(resource_name)
+            = f.submit "Sign in", class: "btn btn-primary"
+        br
+        = link_to "Forgot your password?", new_password_path(resource_name)
