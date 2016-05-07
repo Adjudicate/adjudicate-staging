@@ -19,8 +19,7 @@
           .col-sm-6
             = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
           .col-sm-3
-            | Not Available
-            /! = dispute.created_at.strftime("%m/%d/%Y")
+             = dispute.created_at.strftime("%m/%d/%Y")
             
           .col-sm-3
             -if !dispute.survey.ended?
