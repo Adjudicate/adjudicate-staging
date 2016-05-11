@@ -26,12 +26,8 @@
         .edit-dispute-fields
         
         = form_for  @dispute, url: dispute_path, :html=> { id: 'new_subscription' } do |f|
-
-          = f.text_area :reason, placeholder: "Reason for dispute", class: "edit-dispute-text"
-
-          = f.text_area :violating_content, placeholder: "Describe the violating content", class: "edit-dispute-text"
-          .edit-dispute-btn
-            = f.submit 'Update Dispute', class: "btn btn-primary"
+          .finalize-btn
+            = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
   -else
 
     .dispute-edit-form
@@ -52,11 +48,6 @@
 
         
         = form_for  @dispute, url: dispute_path, :html=> { id: 'new_subscription' } do |f|
-
-          = f.text_area :reason, placeholder: "Reason for dispute", class: "edit-dispute-text"
-
-          = f.text_area :violating_content, placeholder: "Describe the violating content", class: "edit-dispute-text"
-
           = f.hidden_field :stripe_card_token, id: "subscription_stripe_card_token"
           .field
             = label_tag :card_number, "Credit Card Number"
@@ -68,8 +59,8 @@
             = label_tag :card_month, "Card Expiration"
             = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
             = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-          .edit-dispute-btn
-            = f.submit 'Update Dispute', class: "btn btn-primary"
+          .finalize-btn
+            = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
 
       - else
         .upload-documents-container
@@ -85,7 +76,9 @@
               .bar style=("width: 0%") 
         .edit-dispute-fields
           = form_for @dispute, url: dispute_path do |f|
-            = f.text_area :rebuttal, placeholder: "Enter in your reasons this doesn't warrant a takedown", class: "edit-dispute-text"
+            .finalize-btn
+              = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute", id: "btn-update-dispute"
 
-            .edit-dispute-btn
-              = f.submit 'Update Dispute', class: "btn btn-primary btn-update-dispute", id: "btn-update-dispute"
+
+
+

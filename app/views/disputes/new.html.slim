@@ -1,10 +1,19 @@
 .disputes-background
+
+
+
 .disputes-container
+  .dispute-main-header
+    .h3
+      |Create New Dispute
   .new-dispute-form
     = form_for @dispute, url: disputes_path do |f|
-      h4 Create New Dispute
       = f.text_field :url, placeholder: "Url in dispute", required: true
       = f.email_field :creator_email, placeholder: 'Your email', required: true
       = f.text_field :violator_contact, placeholder: 'Contact info of offending party', required: true
 
-      = f.submit 'Create Dispute', class: "btn btn-primary"
+      = f.submit 'Continue', class: "btn btn-primary"
+
+
+
+
