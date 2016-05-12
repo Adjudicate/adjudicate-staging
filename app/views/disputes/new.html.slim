@@ -8,9 +8,11 @@
       |Create New Dispute
   .new-dispute-form
     = form_for @dispute, url: disputes_path do |f|
-      = f.text_field :url, placeholder: "Url in dispute", required: true
+      = f.text_field :creator_name, placeholder: "Your name or alias", required: true
+      = f.text_field :defendant_name, placeholder: "Name/alias of offending party", required: true
       = f.email_field :creator_email, placeholder: 'Your email', required: true
-      = f.text_field :violator_contact, placeholder: 'Contact info of offending party', required: true
+      = f.text_field :violator_contact, placeholder: 'Email of offending party (if known)', required: true
+      = f.text_field :url, placeholder: "Url of content", required: true
 
       = f.submit 'Continue', class: "btn btn-primary"
 

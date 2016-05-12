@@ -24,10 +24,16 @@
             .progress.progress-striped.active
               .bar style=("width: 0%") 
         .edit-dispute-fields
-        
-        = form_for  @dispute, url: dispute_path, :html=> { id: 'new_subscription' } do |f|
-          .finalize-btn
-            = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
+        .new-dispute-form
+          = form_for  @dispute, url: dispute_path, :html=> { id: 'new_subscription' } do |f|
+            = f.text_field :creator_name, placeholder: "Plaintiff Name"
+            = f.text_field :defendant_name, placeholder: "Defendant Name"
+            = f.email_field :creator_email, placeholder: 'Plaintiff Email'
+            = f.text_field :violator_contact, placeholder: 'Defendant Email'
+            = f.text_field :url, placeholder: "Url of content"
+            = f.text_area :reason, placeholder: "Compile Instructions & Documents Here"
+            .finalize-btn
+              = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
   -else
 
     .dispute-edit-form
