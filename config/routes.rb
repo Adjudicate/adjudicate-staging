@@ -19,9 +19,12 @@ Rails.application.routes.draw do
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
-  resources :disputes do 
+  resources :disputes do
+    get 'edit_admin' => 'disputes#edit_admin'
+    patch 'update_admin' => 'disputes#update_admin'
     resources :dispute_documents, only: [:index, :create, :show], as: 'documents'
     get 'vote' => 'disputes#vote_show'
+
     resource :survey, only: [:show] do
       post 'votes' => 'votes#create'
       patch 'votes' => 'votes#edit'

@@ -1,0 +1,45 @@
+.disputes-background
+.disputes-container
+  .dispute-main-header
+    .h3
+      | Add details to Dispute 
+      = @dispute.id
+    .h4
+      = @dispute.url
+
+      .dispute-edit-form
+        .upload-documents-container
+          | Upload documents
+          = s3_uploader_form callback_url: dispute_documents_url(@dispute.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+            = file_field_tag :file, multiple: true
+          #uploads_container
+        script#template-upload type="text/x-tmpl" 
+          .upload id="upload_{%=o.unique_id%}" 
+            h5  %=o.name% 
+            .progress.progress-striped.active
+              .bar style=("width: 0%") 
+        .edit-dispute-fields
+        .row
+        | Attached Documents:
+        - if @dispute.dispute_documents.present?
+          - @dispute.dispute_documents.each_with_index do |dd, index|
+            .row
+              .col-sm-12
+                = index+1  
+                = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
+        - else
+          | No files uploaded
+        .new-dispute-form
+          = form_for  @dispute, url: dispute_update_admin_url do |f|
+            = f.text_field :creator_name, placeholder: "Plaintiff Name"
+            = f.text_field :defendant_name, placeholder: "Defendant Name"
+            = f.email_field :creator_email, placeholder: 'Plaintiff Email'
+            = f.text_field :violator_contact, placeholder: 'Defendant Email'
+            = f.text_field :url, placeholder: "Url of content"
+            = f.text_area :reason, placeholder: "Compile Instructions & Documents Here"
+            .finalize-btn
+              = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
+ 
+
+
+

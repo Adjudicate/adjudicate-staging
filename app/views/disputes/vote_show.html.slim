@@ -3,22 +3,9 @@
   .row
     .col-sm-8.col-sm-offset-2
       .row
-        h5 Dispute Reason
+        h5 Dispute Summary
       .row
         = @dispute.reason
-      .row
-        h5 Violating Content
-      .row
-        = @dispute.violating_content
-      .row
-        | Files: 
-        - if @dispute.dispute_documents.empty?
-          | No files uploaded
-        - else
-          - @dispute.dispute_documents.each_with_index do |dd, index|
-            .row
-              .col-sm-12
-                = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
         hr
       .row
         - if !@dispute.survey.ended?
