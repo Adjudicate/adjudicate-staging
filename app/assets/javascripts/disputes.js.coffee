@@ -2,9 +2,7 @@ jQuery ->
 
   $(document).ready ->
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-    console.log($('#user_role').text())
-    if $('#user_role').text() == 'false'
-      subscription.setupForm()
+    subscription.setupForm()
 
 
 

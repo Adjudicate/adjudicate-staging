@@ -2,7 +2,7 @@
 .disputes-container
   .dispute-main-header
     .h3
-      | Add details to Dispute 
+      | Dispute 
       = @dispute.id
     .h4
       = @dispute.url
@@ -29,14 +29,14 @@
                 = link_to truncate(dd.upload_file_name), dd.url, target: "_blank"
         - else
           | No files uploaded
-        .new-dispute-form
+        .admin-edit-form
           = form_for  @dispute, url: dispute_update_admin_url do |f|
             = f.text_field :creator_name, placeholder: "Plaintiff Name"
             = f.text_field :defendant_name, placeholder: "Defendant Name"
             = f.email_field :creator_email, placeholder: 'Plaintiff Email'
             = f.text_field :violator_contact, placeholder: 'Defendant Email'
             = f.text_field :url, placeholder: "Url of content"
-            = f.text_area :reason, placeholder: "Compile Instructions & Documents Here"
+            = f.text_area :reason, placeholder: "Compile Instructions & Documents Here", class: "dispute-summary-input"
             .finalize-btn
               = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute"
  
