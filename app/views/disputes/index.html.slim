@@ -1,28 +1,51 @@
 .whole-page  
-  .disputes-background
-  .disputes-container
-    .dispute-main-header
-      h3
-        |  Disputes for 
-        =current_user.username
-    .dispute-list
-        .row.dispute-list-item
-          .col-sm-6
-            | Dispute
-          .col-sm-3 
-            | Date Filed
-          .col-sm-3
-            | Deadline to Vote
-    .dispute-list        
-      - @disputes.each do |dispute|
-        .row.dispute-list-item
-          .col-sm-6
-            = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
-          .col-sm-3
-             = dispute.created_at.strftime("%m/%d/%Y")
-            
-          .col-sm-3
-            -if !dispute.survey.ended?
-              = dispute.survey.deadline.strftime("%m/%d/%Y")
-            -else
-              | Vote Closed
+  img.home-background[src='assets/brickwall_cropped_2.jpg']
+  img.index-image[src='assets/angle_courtroom.jpg']
+  .show-dispute-button-div
+    button.btn.index-page-btn.btn-primary.modal-btn[type="button" data-toggle="modal" data-target="#myModal"]
+      | Show My Disputes
+    br
+    = link_to "File a dispute", new_dispute_path, class: 'index-page-btn btn btn-primary'
+    br 
+    = link_to "How It Works", how_it_works_path, class: 'index-page-btn btn btn-primary'
+    br
+    = link_to "Rules of Arbitration", rules_path, class: 'index-page-btn btn btn-primary'
+
+#myModal.modal.indexModalFade.fade[role="dialog"]
+  .modal-dialog
+    .modal-content.indexModal
+      .modal-header
+        button.close[type="button" data-dismiss="modal"]
+          | ×
+        h4.modal-title.indexModalTitle
+          | Disputes for 
+          = current_user.username
+      .modal-body
+        .index-container
+          .disputes-container
+            .dispute-list
+                .row.dispute-list-item.index-item
+                  .col-sm-6
+                    | Dispute
+                  .col-sm-3 
+                    | Date Filed
+                  .col-sm-3
+                    | Deadline to Vote
+            .dispute-list        
+              - @disputes.each do |dispute|
+                .row.dispute-list-item.index-item
+                  .col-sm-6
+                    = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+                  .col-sm-3
+                     = dispute.created_at.strftime("%m/%d/%Y")
+                    
+                  .col-sm-3
+                    -if !dispute.survey.ended?
+                      = dispute.survey.deadline.strftime("%m/%d/%Y")
+                    -else
+                      | Vote Closed      
+
+        .modal-footer
+          button.btn.btn-default[type="button" data-dismiss="modal"]
+            | Close
+

@@ -8,16 +8,16 @@
       .dispute-list-item
         | You will need to upload a Personal Dispute Statement to support your claim in this dispute.
           Please write your Statement in a separate document, and then upload it using the form below.
-          Your statement must be written following certain basic guideline.  
+          Your statement must be written following certain basic guidelines.  
           Please click the button below to see a sample of an acceptable Statement. 
           Feel free to copy and paste this example to use as a template to write your own.  
           In addition to your Personal Dispute Statement, you may also upload additional documents that you 
           believe are relevant to the case.
         br 
+        button.btn.btn-primary.modal-btn[type="button" data-toggle="modal" data-target="#myModal"]
+          | View Example
         br
-        |  Note: If you do not upload anything, your dispute will not be reviewed.
-
-
+        |  Please Note: If you do not upload anything, your dispute will not be reviewed.
 
       - if @disputant
         .upload-documents-container
@@ -34,6 +34,7 @@
         .edit-dispute-fields
         
         = form_for  @dispute, url: dispute_path, :html=> { id: 'new_subscription' } do |f|
+          | Filing Fee: $90
           = f.hidden_field :stripe_card_token, id: "subscription_stripe_card_token"
           .field
             = label_tag :card_number, "Credit Card Number"
@@ -65,6 +66,21 @@
             .finalize-btn
               = f.submit 'Finalize Dispute', class: "btn btn-primary btn-update-dispute", id: "btn-update-dispute"
 
+
+#myModal.modal.fade[role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal"]
+          | ×
+        h4.modal-title
+          | Personal Statement of Dispute
+      .modal-body
+        p
+          | Some text in the modal.
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Close
 
 
 

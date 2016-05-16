@@ -1,5 +1,16 @@
 jQuery ->
 
+$(window).load ->
+  $('.indexModalFade').modal 'show'
+  return
+
+$(window).load ->
+  $('.index-image').click ->
+    $('.indexModalFade').modal 'show'
+    return
+  return
+
+
   $(document).ready ->
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
     subscription.setupForm()
