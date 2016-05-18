@@ -35,15 +35,18 @@
               - @disputes.each do |dispute|
                 .row.dispute-list-item.index-item
                   .col-sm-6
-                    = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+                    - if current_user.admin?
+                      = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+                    - else
+                      | "#{dispute.creator_email} v. #{dispute.violator_contact}"
                   .col-sm-3
                      = dispute.created_at.strftime("%m/%d/%Y")
-                    
                   .col-sm-3
                     -if !dispute.survey.ended?
                       = dispute.survey.deadline.strftime("%m/%d/%Y")
-                    -else
-                      | Vote Closed      
+                      = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid), class: "btn btn-primary"
+                    - else
+                      | Vote Closed 
 
         .modal-footer
           button.btn.btn-default[type="button" data-dismiss="modal"]

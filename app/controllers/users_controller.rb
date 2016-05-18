@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     dispute = Dispute.find_by_uid(params[:uid])
     if current_user.admin? && dispute
       User.invite_from_list(params[:invitations].split(","), dispute)
-      redirect_to user_path(current_user), :flash => { :notice => 'You have successfully invited arbitrators.'}
+      redirect_to user_path(current_user), :flash => { :notice => 'Invitation Successful.'}
     else
       redirect_to user_path(current_user), :flash => { :error => 'Errors: You must choose a dispute and enter arbitrators.'}
     end
