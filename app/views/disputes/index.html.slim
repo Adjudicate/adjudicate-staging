@@ -23,30 +23,35 @@
       .modal-body
         .index-container
           .disputes-container
-            .dispute-list
-                .row.dispute-list-item.index-item
-                  .col-sm-6
-                    | Dispute
-                  .col-sm-3 
-                    | Date Filed
-                  .col-sm-3
-                    | Deadline to Vote
             .dispute-list        
-              - @disputes.each do |dispute|
-                .row.dispute-list-item.index-item
-                  .col-sm-6
-                    - if current_user.admin?
-                      = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
-                    - else
-                      | "#{dispute.creator_email} v. #{dispute.violator_contact}"
-                  .col-sm-3
-                     = dispute.created_at.strftime("%m/%d/%Y")
-                  .col-sm-3
-                    -if !dispute.survey.ended?
-                      = dispute.survey.deadline.strftime("%m/%d/%Y")
-                      = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid), class: "btn btn-primary"
-                    - else
-                      | Vote Closed 
+              - @disputes.each_with_index do |dispute, index|
+                .row
+                  span.fa-stack.fa-lg
+                    i.fa.fa-circle.fa-stack-2x
+                    i.fa.fa-inverse.fa-stack-1x
+                      = index + 1
+                  .row.dispute-list-item.index-item
+                    .col-sm-12.dispute-name
+                      - if current_user.admin?
+                        = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+                      - else
+                        | "#{dispute.creator_email} v. #{dispute.violator_contact}"
+                    .row
+                      .col-sm-3
+                        | Date Filed: 
+                      .col-sm-5
+                        = dispute.created_at.strftime("%m/%d/%Y")
+                    br    
+                    .row 
+                      .col-sm-4   
+                        | Deadline to Vote: 
+                      .col-sm-5 
+                        -if !dispute.survey.ended?
+                          = dispute.survey.deadline.strftime("%m/%d/%Y") 
+                          | &nbsp; &nbsp;
+                          = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid), class: "btn btn-primary"
+                        - else
+                          | Vote Closed 
 
         .modal-footer
           button.btn.btn-default[type="button" data-dismiss="modal"]
