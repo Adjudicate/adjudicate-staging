@@ -15,6 +15,14 @@
         .dispute-title.h5
           | Dispute UID: 
           = @dispute.uid
+        br
+        .dispute-title.h5
+        | Url of Content: 
+        = @dispute.url
+        br 
+        .dispute-title.h5
+        | Date Filed: 
+        = @dispute.created_at.strftime('%D')
       .row
         -if @disputant && !@dispute.survey.ended?
           = link_to "Vote", dispute_vote_path(@dispute.id, uid: @dispute.uid), class: "btn btn-primary edit-dispute-btn"
@@ -25,11 +33,11 @@
         -if current_user.admin?
           = link_to "Delete Dispute", dispute_url(@dispute, uid: params[:uid]), :method => :delete, class: "btn btn-primary delete-dispute-btn", :data => {:confirm => "You Sure?"}
       .row
-        h5 Dispute Reason
+        h5 Dispute Summary
       .row
         = @dispute.reason
       .row
-        | Files:
+        | Files: 
         - if @dispute.dispute_documents.present?
           - @dispute.dispute_documents.each_with_index do |dd, index|
             .row
@@ -47,7 +55,7 @@
           |  Standard Deviation: 
           = @dispute.survey.standard_deviation        
         - else 
-          | Dispute is being voted on.  Results will be available after 
+          |  Results Available After Vote Closes -   
           = @dispute.survey.deadline.strftime('%D')
       .row
         hr
