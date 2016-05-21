@@ -33,9 +33,9 @@
                   .row.dispute-list-item.index-item
                     .col-sm-12.dispute-name
                       - if current_user.admin?
-                        = link_to "#{dispute.creator_email} v. #{dispute.violator_contact}", dispute_path(dispute, uid: dispute.uid)
+                        = link_to "#{dispute.creator_name} v. #{dispute.defendant_name}", dispute_path(dispute, uid: dispute.uid)
                       - else
-                        | "#{dispute.creator_email} v. #{dispute.violator_contact}"
+                        | "#{dispute.creator_name} v. #{dispute.defendant_name}"
                     .row
                       .col-sm-3
                         | Date Filed: 
