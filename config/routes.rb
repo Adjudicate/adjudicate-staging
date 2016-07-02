@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/terms' => 'static#terms'
   get '/rules' => 'static#rules'
 
+  resources :arbitrations 
+
 
   resources :users, only: [:show, :edit, :update] do 
     post 'invite_arbitrator' => 'users#invite_arbitrator'

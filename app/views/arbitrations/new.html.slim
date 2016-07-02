@@ -1,0 +1,15 @@
+.h3
+  |File a Case for Arbitration
+.new-dispute-form
+  = form_for @the_case, url: arbitrations_path, multipart: true do |f|
+    = f.text_field :creator_name, placeholder: "Your name or alias", required: true
+    = f.email_field :creator_email, placeholder: 'Your email', required: true
+    = f.text_field :defendant_name, placeholder: "Name/alias of offending party", required: true
+    = f.text_field :defendant_email, placeholder: 'Email of offending party (if known)', required: true
+    = f.text_field :plaintiff_counsel, placeholder: "Name of Your Attorney", required: true
+    = f.email_field :plaintiff_counsel_email, placeholder: 'Email of your attorney', required: true
+    = f.text_field :defendant_counsel, placeholder: "Name of opposing attorney (If known)", required: true
+    = f.text_field :defendant_counsel_email, placeholder: 'Email of opposing attorney', required: true
+    = f.text_area :case_summary, placeholder: 'Case Summary Here', required: true
+    = f.file_field :document, required: true
+    = f.submit 'Continue', class: "btn btn-primary"

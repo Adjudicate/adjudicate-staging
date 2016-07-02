@@ -1,0 +1,5 @@
+.container
+  - @cases.each_with_index do |the_case, index|
+                .row
+                  .col-sm-12.
+                    = link_to "#{the_case.creator_name} v. #{the_case.defendant_name}", arbitration_path(the_case)

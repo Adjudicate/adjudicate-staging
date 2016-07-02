@@ -1,0 +1,23 @@
+
+
+
+center
+  .new_dispute-form
+    = form_for @the_case, url: arbitration_path do |f|
+	  = f.text_area :case_summary, placeholder: "Summary of the case here.", required: true
+
+	  .upload-documents-container
+	    | Upload documents to support your rebuttal
+	    = s3_uploader_form callback_url: dispute_documents_url(@the_case.id), callback_param: "dispute_document[direct_upload_url]", id: "s3_uploader" do
+	      = file_field_tag :file, multiple: true
+	    #uploads_container
+
+	  script#template-upload type="text/x-tmpl" 
+	    .upload id="upload_{%=o.unique_id%}" 
+	      h5  %=o.name% 
+	      .progress.progress-striped.active
+	        .bar style=("width: 0%") 
+	  .edit-dispute-fields
+	    = form_for @the_case, url: arbitration_path do |f|
+	      .finalize-btn
+	        = f.submit 'Finalize', class: "btn btn-primary btn-update-dispute", id: "btn-update-dispute"
