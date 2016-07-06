@@ -39,13 +39,25 @@
 }
 #new-dispute-btn {
   background-color: #003e7b;
-  font-size: 27px;
+  font-size: 20px;
   text-align: center;
-  margin: 60px auto auto auto;
+  margin: 0 auto auto auto;
   padding-top: 10px;
   display: block;
-  width: 250px;
-  height: 60px;
+  width: 260px;
+  height: 50px;
+
+}
+
+#new-arbitration-btn {
+  background-color: #003e7b;
+  font-size: 19px;
+  text-align: center;
+  margin: 150px auto auto auto;
+  padding-top: 10px;
+  display: block;
+  width: 260px;
+  height: 50px;
 
 }
 .text-on-image{

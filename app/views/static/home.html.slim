@@ -7,7 +7,9 @@ div
         |The Fair Way To Resolve Your Case
     .container.text-on-image    
       .btn.new-dispute-btn
-     	  = link_to "File a dispute", new_dispute_path, class: 'btn btn-primary', id: 'new-dispute-btn'
+     	  = link_to "File a Takedown Request", new_dispute_path, class: 'btn btn-primary', id: 'new-dispute-btn'   
+      .btn.new-dispute-btn
+        = link_to "File a Case For Arbitration", new_arbitration_path, class: 'btn btn-primary', id: 'new-arbitration-btn'  
   .row
     .bottom-section-container.container
       .col-sm-4

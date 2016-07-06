@@ -36,12 +36,12 @@
         br
         br
         = link_to "Click Here to Download Supporting Documentation", @the_case.document.url
-  - if current_user.admin? || current_user.case_manager?    
+  -if current_user.admin? || current_user.case_manager?
     .container    
       = link_to 'Edit Dispute', edit_arbitration_path(@the_case, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
     .container
-      = link_to "Delete Dispute", arbitration_path(@the_case, uid: params[:uid]), :method => :delete, class: "btn btn-primary delete-dispute-btn", :data => {:confirm => "You Sure?"}
-  end 
+       = link_to "Delete Dispute", arbitration_path(@the_case, uid: params[:uid]), :method => :delete, class: "btn btn-primary delete-dispute-btn", :data => {:confirm => "You Sure?"}
+ 
 
 
 
