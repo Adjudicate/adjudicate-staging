@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path
+    else
+      redirect "/"
+    end
+  end
+
   def show
     @disputes = disputes
   end
@@ -54,6 +66,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :role)
   end
 end

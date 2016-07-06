@@ -1,3 +1,223 @@
-// Place all the styles related to the arbitrations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.header-logo{
+  height: 40px;
+}
+
+#user-role{
+  display: none;
+}
+
+.disputes-background {
+  background-image: image-url('brickwall_cropped_2.jpg');
+  background-size: cover;
+  opacity: .7;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -100;
+}
+
+.disputes-container{
+  background-color: #f8f8f8;
+  opacity: 0.9;
+  margin: 70px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  min-height: 470px;
+
+
+  h5 {
+    text-align: center;
+  }
+  h3 {
+   padding: 10px;
+  }
+}
+
+.pay-descript{
+      background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    padding: 20px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.pay-middle-col{
+    padding: 5px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.pay-header{
+  color: #6f6f6f;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+
+.new-dispute-form{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+.new-dispute-form input {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+}
+.dispute-main-header{
+  text-align: center;
+  color: #003e7b;
+}
+.upload-documents-container{
+  width: 300px;
+  margin: 15px auto;
+  border: 1px solid lightblue;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+.upload-documents-container input{
+  padding-left: 30px;
+}
+.edit-dispute-text{
+  display: block;
+  margin: 10px auto;
+  width: 300px;
+  height: 100px;
+}
+
+/*.edit-dispute-fields textarea{
+  resize: none;
+}*/
+.dispute-list{
+  width: 80%;
+  margin: 0 auto;
+  color: #003e7b;
+}
+.dispute-list-item{
+  padding: 5px 10px;
+  margin: 10px;
+  text-align: center;
+}
+.thank-you-container {
+  margin-top: 20px;
+}
+.new-comment-form {
+  textarea {
+    height: 7em;
+    width: 100%;
+  }
+}
+
+.submit-btn {
+    margin: auto;
+    display: block !important;
+}
+
+.dispute-title {
+  display: inline-block;
+  margin-left: 0;
+  color: #003e7b;
+}
+.edit-dispute-btn {
+  float: right;
+  width: 130px;
+  margin: 5px;
+}
+.delete-dispute-btn {
+  float: right;
+  width: 130px;
+  margin: 5px;
+}
+
+.finalize-btn{
+  margin-left: 42%;
+  margin-top: 25px;
+}
+
+.dispute-summary-input {
+  width: 100%;
+  height: 200px;
+}
+
+.admin-edit-form{
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.index-image{
+  height: 500px;
+  width: 100%;
+}
+
+.index-item{   
+ background-color: #f8f8f8;    
+ border-bottom: 2px solid #65331F;    
+ border-radius: 5px;  
+ padding: 5px 10px;      
+ margin: 10px;      
+ text-align: center;
+}
+
+.index-container {
+   border: 3px solid #65331F;
+   
+}
+
+.index-image{
+  width: 100%;
+  height: 500px;
+  z-index: -1;
+}
+
+.indexModal{
+  background-color: #f8f8f8;
+  opacity: 0.9;
+  width: 700px;
+}
+
+.indexModalTitle{
+  color: #003e7b;
+}
+
+.show-disputes-btn{
+  background-color: #003e7b;
+  font-size: 17px !important;
+  text-align: center;
+  margin: 10px 0 10px 0;
+  padding-top: 10px;
+  display: block;
+  width: 200px;
+  height: 50px;
+}
+
+.show-dispute-button-div{
+  margin-top: -300px;
+}
+
+.index-page-btn{
+  background-color: #003e7b;
+  font-size: 15px !important;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  margin: 5px 0 5px 0;
+  padding-top: 10px;
+  display: block;
+}
+
+.dispute-name{
+  font-size: 22px;
+}
+
+
+
+
+

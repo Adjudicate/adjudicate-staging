@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   devise_scope :user do
     get "/signin" => "devise/sessions#new"
-    get "/signup" => "devise/registrations#new"
   end
 
   root 'static#home'
@@ -11,16 +10,16 @@ Rails.application.routes.draw do
   get '/terms' => 'static#terms'
   get '/rules' => 'static#rules'
 
-  resources :arbitrations 
 
 
-  resources :users, only: [:show, :edit, :update] do 
+  resources :users, only: [:new, :create, :show, :edit, :update] do 
     post 'invite_arbitrator' => 'users#invite_arbitrator'
     post 'inform_defendant' => 'users#inform_defendant'
     resources :billing, only: [:show]
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
+  resources :arbitrations 
   resources :disputes do
     get 'edit_admin' => 'disputes#edit_admin'
     patch 'update_admin' => 'disputes#update_admin'

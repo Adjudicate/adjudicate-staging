@@ -1,5 +1,47 @@
-.container-fluid
-  = @the_case.case_summary
-  br
-  = link_to "Download Attachment", @the_case.document.url
+.disputes-background
+.disputes-container
+  .container
+    .dispute-title.h4
+      = @the_case.creator_name
+      |  v. 
+      = @the_case.defendant_name
+      br
+      .dispute-title.h5 
+        | Dispute no: 
+        = @the_case.uid
+      br
+      .dispute-title.h5
+        | Date Filed: 
+        = @the_case.created_at.strftime('%D')
+      br
+      .dispute-title.h5
+        | Plaintiff Email: 
+        = @the_case.creator_email
+      br
+      .dispute-title.h5
+        | Defendant Email: 
+        = @the_case.defendant_email
+      br 
+      .dispute-title.h5
+        | Counsel for Plaintiff: 
+        = @the_case.plaintiff_counsel
+        br
+        = @the_case.plaintiff_counsel_email
+      br
+      .dispute-title.h5
+        | Counsel for Defendant: 
+        = @the_case.defendant_counsel 
+        br
+        = @the_case.defendant_counsel_email    
+        br
+        br
+        = link_to "Click Here to Download Supporting Documentation", @the_case.document.url
+  - if current_user.admin? || current_user.case_manager?    
+    .container    
+      = link_to 'Edit Dispute', edit_arbitration_path(@the_case, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
+    .container
+      = link_to "Delete Dispute", arbitration_path(@the_case, uid: params[:uid]), :method => :delete, class: "btn btn-primary delete-dispute-btn", :data => {:confirm => "You Sure?"}
+  end 
+
+
 

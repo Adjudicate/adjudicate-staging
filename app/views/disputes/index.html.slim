@@ -11,49 +11,51 @@
     br
     = link_to "Rules of Arbitration", rules_path, class: 'index-page-btn btn btn-primary'
 
-#myModal.modal.indexModalFade.fade[role="dialog"]
-  .modal-dialog
-    .modal-content.indexModal
-      .modal-header
-        button.close[type="button" data-dismiss="modal"]
-          | ×
-        h4.modal-title.indexModalTitle
-          | Disputes for 
-          = current_user.username
-      .modal-body
-        .index-container
-          .disputes-container
-            .dispute-list        
-              - @disputes.each_with_index do |dispute, index|
-                .row
-                  span.fa-stack.fa-lg
-                    i.fa.fa-circle.fa-stack-2x
-                    i.fa.fa-inverse.fa-stack-1x
-                      = index + 1
-                  .row.dispute-list-item.index-item
-                    .col-sm-12.dispute-name
-                      - if current_user.admin?
-                        = link_to "#{dispute.creator_name} v. #{dispute.defendant_name}", dispute_path(dispute, uid: dispute.uid)
-                      - else
-                        | "#{dispute.creator_name} v. #{dispute.defendant_name}"
-                    .row
-                      .col-sm-3
-                        | Date Filed: 
-                      .col-sm-5
-                        = dispute.created_at.strftime("%m/%d/%Y")
-                    br    
-                    .row 
-                      .col-sm-4   
-                        | Deadline to Vote: 
-                      .col-sm-5 
-                        -if !dispute.survey.ended?
-                          = dispute.survey.deadline.strftime("%m/%d/%Y") 
-                          | &nbsp; &nbsp;
-                          = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid), class: "btn btn-primary"
-                        - else
-                          | Vote Closed 
 
-        .modal-footer
-          button.btn.btn-default[type="button" data-dismiss="modal"]
-            | Close
+- if @disputes.length >= 1
+  #myModal.modal.indexModalFade.fade[role="dialog"]
+    .modal-dialog
+      .modal-content.indexModal
+        .modal-header
+          button.close[type="button" data-dismiss="modal"]
+            | ×
+          h4.modal-title.indexModalTitle
+            | Disputes for 
+            = current_user.username
+        .modal-body
+          .index-container
+            .disputes-container
+              .dispute-list        
+                - @disputes.each_with_index do |dispute, index|
+                  .row
+                    span.fa-stack.fa-lg
+                      i.fa.fa-circle.fa-stack-2x
+                      i.fa.fa-inverse.fa-stack-1x
+                        = index + 1
+                    .row.dispute-list-item.index-item
+                      .col-sm-12.dispute-name
+                        - if current_user.admin?
+                          = link_to "#{dispute.creator_name} v. #{dispute.defendant_name}", dispute_path(dispute, uid: dispute.uid)
+                        - else
+                          | "#{dispute.creator_name} v. #{dispute.defendant_name}"
+                      .row
+                        .col-sm-3
+                          | Date Filed: 
+                        .col-sm-5
+                          = dispute.created_at.strftime("%m/%d/%Y")
+                      br    
+                      .row 
+                        .col-sm-4   
+                          | Deadline to Vote: 
+                        .col-sm-5 
+                          -if !dispute.survey.ended?
+                            = dispute.survey.deadline.strftime("%m/%d/%Y") 
+                            | &nbsp; &nbsp;
+                            = link_to "Vote", dispute_vote_path(dispute.id, uid: dispute.uid), class: "btn btn-primary"
+                          - else
+                            | Vote Closed 
+
+          .modal-footer
+            button.btn.btn-default[type="button" data-dismiss="modal"]
+              | Close
 

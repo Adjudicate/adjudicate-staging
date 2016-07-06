@@ -1,5 +1,49 @@
-.container
-  - @cases.each_with_index do |the_case, index|
-                .row
-                  .col-sm-12.
-                    = link_to "#{the_case.creator_name} v. #{the_case.defendant_name}", arbitration_path(the_case)
+.whole-page  
+  img.home-background[src='assets/brickwall_cropped_2.jpg']
+  img.index-image[src='assets/scale_blurred_background.jpg']
+  .show-dispute-button-div
+    button.btn.index-page-btn.btn-primary.modal-btn[type="button" data-toggle="modal" data-target="#myModal"]
+      | My Ongoing Cases
+    br
+    = link_to "File a Case", new_arbitration_path, class: 'index-page-btn btn btn-primary'
+    br 
+    = link_to "How It Works", how_it_works_path, class: 'index-page-btn btn btn-primary'
+    br
+    = link_to "Rules of Arbitration", rules_path, class: 'index-page-btn btn btn-primary'
+  - if @cases.length >= 1
+    #myModal.modal.indexModalFade.fade[role="dialog"]
+      .modal-dialog
+        .modal-content.indexModal
+          .modal-header
+            button.close[type="button" data-dismiss="modal"]
+              | ×
+            h4.modal-title.indexModalTitle
+              | Dashboard for
+              = current_user.username
+
+          .modal-body
+            .index-container
+              .disputes-container    
+                .dispute-list  
+                  - @cases.each_with_index do |the_case, index|
+                    .row
+                      span.fa-stack.fa-lg
+                        i.fa.fa-circle.fa-stack-2x
+                        i.fa.fa-inverse.fa-stack-1x
+                          = index + 1
+                      .row.dispute-list-item.index-item
+                        .col-sm-12.dispute-name
+                           = link_to "#{the_case.creator_name} v. #{the_case.defendant_name}", arbitration_path(the_case)
+                        .row
+                          .col-sm-3
+                            | Date Filed: 
+                          .col-sm-5
+                            = the_case.created_at.strftime("%m/%d/%Y")
+
+
+                      
+            .modal-footer
+              button.btn.btn-default[type="button" data-dismiss="modal"]
+                | Close
+
+

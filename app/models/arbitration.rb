@@ -1,6 +1,7 @@
 class Arbitration < ActiveRecord::Base
+  has_many :arbitration_users
+  has_many :users, through: :arbitration_users
   mount_uploader :document, DocumentUploader
- 
 
 
   # validates_presence_of :creator_email
