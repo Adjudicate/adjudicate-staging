@@ -53,7 +53,7 @@
   background-color: #003e7b;
   font-size: 19px;
   text-align: center;
-  margin: 150px auto auto auto;
+  margin: 70px auto 20px auto;
   padding-top: 10px;
   display: block;
   width: 260px;
@@ -62,7 +62,7 @@
 }
 .text-on-image{
   text-align: center;
-  margin-bottom: 250px;
+  margin-bottom: 220px;
 }
 
 .slogan{
@@ -85,7 +85,7 @@
 }
 
 .about-us{
-  height: 650px;
+  min-height: 650px;
   width: 90%;
   opacity: 0.9;
   margin: 20px;
@@ -96,7 +96,7 @@
 }
 
 .how-it-works{
-  height: 650px;
+  min-height: 650px;
   width: 90%;
   opacity: 0.9;
   margin: 20px;
@@ -109,7 +109,7 @@
 
 
 .contact-us{
-  height: 650px;
+  min-height: 650px;
   width: 90%;
   opacity: 0.9;
   margin: 20px;
