@@ -11,6 +11,20 @@ class Arbitration < ActiveRecord::Base
   # has_attached_file :upload
 
   before_create :create_uids
+
+
+  attr_accessor :stripe_card_token
+
+    def save_with_payment  
+    charge = Stripe::Charge.create(
+    :amount => self.amount_payable * 100, # amount in cents
+    :currency => "usd",
+    :card => stripe_card_token,
+    :description => "Payment for Arbitration Services"
+    )
+    rescue Stripe::CardError => e
+      # The card has been declined
+  end
   # after_save :save_document, if: :document
 
   # def save_document

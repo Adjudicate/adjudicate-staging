@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706132358) do
+ActiveRecord::Schema.define(version: 20160801134035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +27,18 @@ ActiveRecord::Schema.define(version: 20160706132358) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "creator_name"
-    t.string   "defendant_name"
-    t.string   "plaintiff_counsel"
-    t.string   "defendant_counsel"
+    t.string   "defendant_name",          default: ""
+    t.string   "plaintiff_counsel",       default: ""
+    t.string   "defendant_counsel",       default: ""
     t.string   "creator_email"
-    t.string   "defendant_email"
-    t.string   "plaintiff_counsel_email"
-    t.string   "defendant_counsel_email"
-    t.string   "case_summary"
+    t.string   "defendant_email",         default: ""
+    t.string   "plaintiff_counsel_email", default: ""
+    t.string   "defendant_counsel_email", default: ""
+    t.text     "case_summary"
     t.string   "uid"
     t.string   "document"
+    t.integer  "amount_payable",          default: 0
+    t.boolean  "payment_due",             default: false
   end
 
   create_table "comments", force: true do |t|

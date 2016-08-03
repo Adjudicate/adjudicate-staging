@@ -18,5 +18,6 @@
 /tmp
 
 .env
+/config/environments/*.rb
 
 /config/local_env.yml

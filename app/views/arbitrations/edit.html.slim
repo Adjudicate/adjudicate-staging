@@ -19,6 +19,11 @@ center
     = f.text_field :defendant_counsel_email, placeholder: 'Email of opposing attorney'
     = f.text_area :case_summary, placeholder: 'Case Summary Here'
     = f.file_field :document
+    = f.label :payment_due, "Payment Due", :value => true
+    = f.radio_button :payment_due, true, :value => true 
+    = f.label :payment_due, 'No Payment Due', :value => false
+    = f.radio_button :payment_due, false, :value => false 
+    = f.number_field :amount_payable, placeholder: "$ Amount Due"
     = f.submit 'Continue', class: "btn btn-primary"
 
 

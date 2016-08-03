@@ -26,6 +26,7 @@ gem 'chosen-rails'
 gem 'tagsinput-rails'
 
 group :development do 
+  gem 'figaro' 
   gem 'binding_of_caller'
   gem 'spring'
   gem "better_errors"

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/about' => 'static#about'
   get '/terms' => 'static#terms'
   get '/rules' => 'static#rules'
+  get '/arbitrations/:id/pay' => 'arbitrations#pay'
 
 
 
@@ -19,7 +20,8 @@ Rails.application.routes.draw do
   end
   resources :admins, only: [:show]
   post 'admins/:id/invite_arbitrator' => 'admins#invite_arbitrator', as: 'admin_invite_arbitrator'
-  resources :arbitrations 
+  resources :arbitrations do
+  end
   resources :disputes do
     get 'edit_admin' => 'disputes#edit_admin'
     patch 'update_admin' => 'disputes#update_admin'
