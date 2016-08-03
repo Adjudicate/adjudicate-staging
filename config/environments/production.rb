@@ -7,9 +7,9 @@ Rails.application.configure do
 
 
  
-SECRET_KEY = "sk_live_IV8U520L3LnekvKLRU2SJCAx"
+SECRET_KEY = "sk_live_GG4R5tKE19BMeFeWlgXM5BzP"
 
-STRIPE_PUBLIC_KEY = "pk_live_NFS9ILsDRozmn6yloaYGuAI8"
+STRIPE_PUBLIC_KEY = "pk_live_fe1DXEcS1aHMMAcBuMbrZrQe"
 
 
 
