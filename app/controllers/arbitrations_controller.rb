@@ -27,7 +27,7 @@ class ArbitrationsController < ApplicationController
 
     # for user associations
     # @dispute.users << current_user
-
+    
     if @the_case.save
       redirect_to arbitration_path(@the_case, uid: @the_case.uid)
     end
@@ -60,15 +60,21 @@ class ArbitrationsController < ApplicationController
   end
 
 def pay
-  @the_case = Arbitration.find(params[:id])
-        if @the_case.update_attributes(arbitration_params) && 
-         @the_case.save_with_payment
-         redirect_to arbitration_path(@the_case, uid: @the_case.uid), 
+  @the_case = Arbitration.find(params[:id]) 
+end
+
+def paying
+    @the_case = Arbitration.find(params[:id])
+    @the_case.stripe_card_token = params[:arbitration][:stripe_card_token]
+    if @the_case.save_with_payment && @the_case.update_attributes(arbitration_params)
+
+         redirect_to arbitrations_path, 
          :notice => "Thank you for using Adjudicate!"
-      else
-        redirect_to edit_arbitration_path(@the_case),
+    else
+        redirect_to arbitrations_path,
         :notice => "Payment Failed"
-      end
+end
+
  end
 
 
@@ -78,7 +84,7 @@ def pay
   private 
 
   def arbitration_params
-      params.permit( :creator_name, :creator_email, :defendant_name, :defendant_email, :plaintiff_counsel, :plaintiff_counsel_email, 
+      params.require(:arbitration).permit( :creator_name, :creator_email, :defendant_name, :defendant_email, :plaintiff_counsel, :plaintiff_counsel_email, 
         :defendant_counsel, :defendant_counsel_email, :case_summary, :document, :payment_due, :amount_payable, :stripe_card_token)
   end
 

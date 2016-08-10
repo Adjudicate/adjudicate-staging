@@ -11,7 +11,7 @@ $(window).load ->
   return
 
 
-  $(document).ready ->
+$(document).ready ->
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
     subscription.setupForm()
 

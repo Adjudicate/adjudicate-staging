@@ -53,6 +53,7 @@ class DisputesController < ApplicationController
         redirect_to edit_dispute_path(@dispute)
       end
     else
+      @dispute.stripe_card_token = params[:dispute][:stripe_card_token]
       if @dispute.update_attributes(dispute_params) && 
          @dispute.save_with_payment
          redirect_to dispute_path(@dispute, uid: @dispute.uid), 

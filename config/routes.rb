@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/terms' => 'static#terms'
   get '/rules' => 'static#rules'
   get '/arbitrations/:id/pay' => 'arbitrations#pay'
+  patch '/arbitrations/:id/paying' => 'arbitrations#paying'
 
 
 
