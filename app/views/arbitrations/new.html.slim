@@ -30,3 +30,25 @@
         = f.text_area :case_summary, placeholder: 'Case Summary Here', required: true, class: 'dispute-summary'
         /!= f.file_field :document, required: true
         = f.submit 'Submit', class: "btn btn-primary"
+
+
+#myModal.modal.fade[role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal"]
+          | ×
+        h4.modal-title
+          | Case Summary
+      .modal-body
+        p 
+          | I purchased a desk through RDN.  When it arrived at my office, I unpacked it and set it up.  
+            After using it for a month, I notice that the back left corner of the desk was chipped.  Since that part of the desk is in a corner of my office, 
+            it cannot be the responsibility of the cleaning people or some other event.  It must have arrived with the chip and I just did not notice it. 
+            Now I would like to return it and get a new desk ($500) or get a discount off of the price.  The manufacturer refuses to pay for anything. 
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Close
+
+
+
