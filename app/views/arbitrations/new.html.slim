@@ -1,15 +1,32 @@
-.h3
-  |File a Case for Arbitration
-.new-dispute-form
-  = form_for @the_case, url: arbitrations_path, multipart: true do |f|
-    = f.text_field :creator_name, placeholder: "Your name or alias", required: true
-    = f.email_field :creator_email, placeholder: 'Your email', required: true
-    = f.text_field :defendant_name, placeholder: "Name/alias of offending party"
-    = f.text_field :defendant_email, placeholder: 'Email of offending party (if known)'
-    = f.text_field :plaintiff_counsel, placeholder: "Name of Your Attorney", required: true
-    = f.email_field :plaintiff_counsel_email, placeholder: 'Email of your attorney', required: true
-    = f.text_field :defendant_counsel, placeholder: "Name of opposing attorney (If known)"
-    = f.text_field :defendant_counsel_email, placeholder: 'Email of opposing attorney'
-    = f.text_area :case_summary, placeholder: 'Case Summary Here', required: true
-    = f.file_field :document, required: true
-    = f.submit 'Continue', class: "btn btn-primary"
+.disputes-background
+.disputes-container
+  .dispute-main-header
+    .h3
+      |File a Case for Arbitration 
+    .dispute-edit-form
+      .case-summary-instructions
+        | You will need to include a Summary of your case to support your claim in this dispute.
+          Please write your Summary in the text box provided below. 
+          Please click the button below to see a sample of an acceptable Summary. 
+          
+        br 
+        button.btn.btn-primary.modal-btn[type="button" data-toggle="modal" data-target="#myModal"]
+          | View Example
+        br
+        |  Please Note: If you do not include a summary, your dispute will not be reviewed.
+
+
+   
+    .new-dispute-form
+      = form_for @the_case, url: arbitrations_path, multipart: true do |f|
+        = f.text_field :creator_name, placeholder: "Your name or alias", required: true
+        = f.email_field :creator_email, placeholder: 'Your email', required: true
+        = f.text_field :defendant_name, placeholder: "Name/alias of offending party"
+        = f.text_field :defendant_email, placeholder: 'Email of offending party (if known)'
+        = f.text_field :plaintiff_counsel, placeholder: "Name of Your Attorney", required: true
+        = f.email_field :plaintiff_counsel_email, placeholder: 'Email of your attorney', required: true
+        = f.text_field :defendant_counsel, placeholder: "Name of opposing attorney (If known)"
+        = f.text_field :defendant_counsel_email, placeholder: 'Email of opposing attorney'
+        = f.text_area :case_summary, placeholder: 'Case Summary Here', required: true, class: 'dispute-summary'
+        /!= f.file_field :document, required: true
+        = f.submit 'Submit', class: "btn btn-primary"
