@@ -35,7 +35,11 @@
         = @the_case.defendant_counsel_email    
         br
         br
-        = link_to "Click Here to Download Supporting Documentation", @the_case.document.url
+    .dispute-title.h5.case-summary-show-box
+      | Case Summary: 
+      br  
+      = @the_case.case_summary 
+        /!= link_to "Click Here to Download Supporting Documentation", @the_case.document.url
   -if current_user.admin? || current_user.case_manager?
     .container    
       = link_to 'Edit This Case', edit_arbitration_path(@the_case, uid: params[:uid]), class: "btn btn-primary edit-dispute-btn"
