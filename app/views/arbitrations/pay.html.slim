@@ -1,20 +1,22 @@
-   .edit-dispute-fields
-        
-        = form_for  @the_case, url: "/arbitrations/#{@the_case.id}/paying", :html=> { id: 'new_charge' } do |f|
-          | Amount Due: $
-          = @the_case.amount_payable
-          = f.hidden_field :stripe_card_token, id: "the_stripe_card_token"
-          = f.hidden_field :payment_due, value: false
-          = f.hidden_field :amount_payable, value: 0
-          .field
-            = label_tag :the_card_number, "Credit Card Number"
-            = text_field_tag :the_card_number, nil, name: nil
-          .field
-            = label_tag :the_card_code, "Security Code on Card (CVV)"
-            = text_field_tag :the_card_code, nil, name: nil
-          .field
-            = label_tag :the_card_month, "Card Expiration"
-            = select_month nil, {add_month_numbers: true}, {name: nil, id: "the_card_month"}
-            = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "the_card_year"}
-          .finalize-btn
-            = f.submit 'Submit Payment', class: "btn btn-primary btn-update-dispute"
+.disputes-background
+.disputes-container
+ .edit-dispute-fields
+  .credit-card-payment-form   
+    = form_for  @the_case, url: "/arbitrations/#{@the_case.id}/paying", :html=> { id: 'new_charge' } do |f|
+      | Amount Due: $
+      = @the_case.amount_payable
+      = f.hidden_field :stripe_card_token, id: "the_stripe_card_token"
+      = f.hidden_field :payment_due, value: false
+      = f.hidden_field :amount_payable, value: 0
+      .field.payment-input
+        = label_tag :the_card_number, "Credit Card Number"
+        = text_field_tag :the_card_number, nil, name: nil
+      .field.payment-input
+        = label_tag :the_card_code, "Security Code on Card (CVV)"
+        = text_field_tag :the_card_code, nil, name: nil
+      .field.payment-input
+        = label_tag :the_card_month, "Card Expiration"
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "the_card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "the_card_year"}
+      .field.payment-input
+        = f.submit 'Submit Payment', class: "btn btn-primary"
