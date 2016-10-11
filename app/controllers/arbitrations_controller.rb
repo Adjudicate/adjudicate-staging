@@ -61,9 +61,10 @@ class ArbitrationsController < ApplicationController
 
 def pay
   @the_case = Arbitration.find(params[:id]) 
-  if @the_case.paiment_due == false
-    flash[:message] = "No payment is due on this account"
+  if @the_case.payment_due == false
+    flash[:notice] = "No payment is due on this account"
     redirect_to arbitrations_path
+  end
 end
 
 def paying
